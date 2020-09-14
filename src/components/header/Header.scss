@@ -1,0 +1,59 @@
+@import "../../static/colors";
+
+div.header {
+  background: $primary-light-3;
+  color: #ffffff;
+
+  div {
+    display: flex;
+    align-items: center;
+
+    &:nth-of-type(2) {
+      width: 50%;
+    }
+  }
+}
+
+._mrg-r {
+  margin-right: 15px !important;
+}
+
+.header__logo {
+  height: 30px;
+  width: 30px;
+}
+
+.header__name {
+  color: $primary-dark-5;
+}
+
+.header__menu {
+  &._assets {
+    ul {
+      min-width: 200px;
+    }
+  }
+
+  ul {
+    li {
+      margin-right: 10px;
+      display: flex;
+      justify-content: space-between;
+
+      &:hover {
+        background: $primary-light-4;
+      }
+
+      &:focus, ._active {
+        background: $primary-light-3;
+
+        &:hover, &:focus {
+          background: $primary-light-2;
+
+        }
+      }
+    }
+
+  }
+}
+
