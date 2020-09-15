@@ -1,10 +1,9 @@
 import React from 'react';
-import {AppBar, Toolbar, Typography, Button, Menu, MenuItem} from '@material-ui/core';
+import {AppBar, Toolbar, Typography, Button, Menu, MenuItem, Tooltip, IconButton} from '@material-ui/core';
 
 import './Header.scss';
 import logo from '../../static/logo.png';
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
+import AuthWindow from '../authWindow/AuthWindow';
 
 export default class App extends React.Component {
 
@@ -14,7 +13,8 @@ export default class App extends React.Component {
         this.state = {
             assetsAnchorEl: null,
             accountsAnchorEl: null,
-        }
+            openAuthWindow: false,
+        };
 
     }
 
@@ -28,9 +28,8 @@ export default class App extends React.Component {
         console.log('onAddAccount');
     }
 
-    openAuthWindow = () => {
-        console.log('openAuthWindow');
-    }
+    onOpenAuthWindow = () => this.setState({openAuthWindow: true});
+    onCloseAuthWindow = () => this.setState({openAuthWindow: false});
 
     render() {
         const
@@ -107,18 +106,20 @@ export default class App extends React.Component {
                         </Typography>
                         {this.context.currentUser ?
                             <Tooltip title='Logout'>
-                                <IconButton onClick={this.openAuthWindow}>
+                                <IconButton onClick={this.onOpenAuthWindow}>
                                     <i className='fa fa-sign-out'/>
                                 </IconButton>
                             </Tooltip>
                             :
                             <Tooltip title='Login'>
-                                <IconButton>
+                                <IconButton onClick={this.onOpenAuthWindow}>
                                     <i className='fa fa-sign-in'/>
                                 </IconButton>
                             </Tooltip>
                         }
                     </div>
+
+                    <AuthWindow open={this.state.openAuthWindow} onClose={this.onCloseAuthWindow}/>
 
 
                 </Toolbar>

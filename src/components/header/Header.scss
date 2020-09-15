@@ -1,7 +1,5 @@
-@import "../../static/colors";
-
 div.header {
-  background: $primary-light-3;
+  background: var(--primary-light-3);
   color: #ffffff;
 
   div {
@@ -24,7 +22,7 @@ div.header {
 }
 
 .header__name {
-  color: $primary-dark-5;
+  color: var(--primary-dark-5);
 }
 
 .header__menu {
@@ -41,14 +39,14 @@ div.header {
       justify-content: space-between;
 
       &:hover {
-        background: $primary-light-4;
+        background: var(--primary-light-4);
       }
 
       &:focus, ._active {
-        background: $primary-light-3;
+        background: var(--primary-light-3);
 
         &:hover, &:focus {
-          background: $primary-light-2;
+          background: var(--primary-light-2);
 
         }
       }
