@@ -4,19 +4,19 @@ div.window {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  height: 50%;
+  height: auto;
   outline: none;
   border-radius: 10px;
-
 }
 
 .window__header {
   background: var(--primary-light-3);
+  color: var(--primary-dark-5);
   padding: 0 20px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-.window__content {
-  padding: 20px;
+.window__controls {
+  margin-bottom: 20px;
 }

@@ -1,27 +1,40 @@
 @import "./static/colors";
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+}
+
+i {
+  color: var(--primary-dark-5);
 }
 
 ._df-aic-jcsb {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
 ._df-aic-jcsa {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 button.primary {
-    color: #ffffff;
-    background: var(--primary-light-1);
-    border: 1px solid var(--primary-dark-5);
-    border-radius: 3px;
-    min-width: 120px;
-    height: 28px;
-    text-transform: none;
+  color: #ffffff;
+  background: var(--primary-light-1);
+  border: 1px solid var(--primary-dark-4);
+  border-radius: 3px;
+  min-width: 120px;
+  height: 28px;
+  text-transform: none;
+
+  &:hover {
+    background: var(--primary-light-2);
+  }
+
+  &:focus {
+    background: var(--primary-light-3);
+  }
 }

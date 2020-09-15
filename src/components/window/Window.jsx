@@ -1,5 +1,5 @@
 import React from 'react';
-import {IconButton, Modal, Paper, Typography} from '@material-ui/core';
+import {Button, IconButton, Modal, Paper, Typography} from '@material-ui/core';
 import './Window.scss';
 
 export default class Window extends React.Component {
@@ -22,11 +22,24 @@ export default class Window extends React.Component {
                             <i className='fa fa-times'/>
                         </IconButton>
                     </div>
-                    <div className='window__content'>
+                    <div>
                         {this.props.children}
                     </div>
-                </Paper>
 
+                    {this.props.onCancel || this.props.onSubmit}
+                    <div className='window__controls _df-aic-jcsa'>
+                        {this.props.onCancel &&
+                        <Button onClick={this.props.onCancel} className='primary'>
+                            Cancel
+                        </Button>
+                        }
+                        {this.props.onSubmit &&
+                        <Button onClick={this.props.onSubmit} className='primary'>
+                            Submit
+                        </Button>
+                        }
+                    </div>
+                </Paper>
             </Modal>
         );
     }
