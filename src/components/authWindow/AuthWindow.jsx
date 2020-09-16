@@ -2,6 +2,7 @@ import React from 'react';
 import {Tabs, Tab, TextField} from '@material-ui/core';
 
 import Window from '../window/Window';
+import withAlert from '../withAlert';
 import withUser from '../withUser';
 import userService from '../../services/userService';
 import validateHelper from '../../helpers/validateHelper';
@@ -28,18 +29,13 @@ class AuthWindow extends React.Component {
         const method = this.state.mode === 0 ? userService.login : userService.registration;
         method(this.state.username, this.state.password)
             .then(response => {
-                debugger
                 this.props.login(JSON.parse(response.data));
                 this.props.onClose();
             })
             .catch(reason => {
-                debugger
                 const status = reason.response.status;
-                if (status === 400) {
-
-                } else if (status === 403) {
-
-                }
+                const error = status === 403 ? 'Email or password is wrong' : 'Server error, sorry, try again later';
+                this.props.setError(error);
             });
     }
 
@@ -103,4 +99,4 @@ class AuthWindow extends React.Component {
     }
 }
 
-export default withUser(AuthWindow);
+export default withUser(withAlert(AuthWindow));
