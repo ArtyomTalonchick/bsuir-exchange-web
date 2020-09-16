@@ -1,11 +1,13 @@
 import React from 'react';
 import {AppBar, Toolbar, Typography, Button, Menu, MenuItem, Tooltip, IconButton} from '@material-ui/core';
 
-import './Header.scss';
-import logo from '../../static/logo.png';
+import withUser from '../withUser';
 import AuthWindow from '../authWindow/AuthWindow';
 
-export default class App extends React.Component {
+import './Header.scss';
+import logo from '../../static/logo.png';
+
+class Header extends React.Component {
 
     constructor(props) {
         super(props);
@@ -30,6 +32,10 @@ export default class App extends React.Component {
 
     onOpenAuthWindow = () => this.setState({openAuthWindow: true});
     onCloseAuthWindow = () => this.setState({openAuthWindow: false});
+
+    onLogout = () => {
+        this.props.login();
+    }
 
     render() {
         const
@@ -102,11 +108,11 @@ export default class App extends React.Component {
 
                     <div>
                         <Typography variant='subtitle2'>
-                            Login:
+                            {this.props.user ? 'Logout:' : 'Login'}
                         </Typography>
-                        {this.context.currentUser ?
+                        {this.props.user ?
                             <Tooltip title='Logout'>
-                                <IconButton onClick={this.onOpenAuthWindow}>
+                                <IconButton onClick={this.onLogout}>
                                     <i className='fa fa-sign-out'/>
                                 </IconButton>
                             </Tooltip>
@@ -121,9 +127,10 @@ export default class App extends React.Component {
 
                     <AuthWindow open={this.state.openAuthWindow} onClose={this.onCloseAuthWindow}/>
 
-
                 </Toolbar>
             </AppBar>
         );
     }
 }
+
+export default withUser(Header);

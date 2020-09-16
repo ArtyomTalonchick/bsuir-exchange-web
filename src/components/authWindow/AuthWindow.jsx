@@ -2,12 +2,13 @@ import React from 'react';
 import {Tabs, Tab, TextField} from '@material-ui/core';
 
 import Window from '../window/Window';
+import withUser from '../withUser';
+import userService from '../../services/userService';
+import validateHelper from '../../helpers/validateHelper';
 
 import './AuthWindow.scss';
-import userService from "../../services/userService";
-import validateHelper from "../../helpers/validateHelper";
 
-export default class AuthWindow extends React.Component {
+class AuthWindow extends React.Component {
     constructor(props) {
         super(props);
 
@@ -26,8 +27,13 @@ export default class AuthWindow extends React.Component {
     onSubmit = () => {
         const method = this.state.mode === 0 ? userService.login : userService.registration;
         method(this.state.username, this.state.password)
-            .then(response => alert(response.data))
+            .then(response => {
+                debugger
+                this.props.login(JSON.parse(response.data));
+                this.props.onClose();
+            })
             .catch(reason => {
+                debugger
                 const status = reason.response.status;
                 if (status === 400) {
 
@@ -96,3 +102,5 @@ export default class AuthWindow extends React.Component {
         );
     }
 }
+
+export default withUser(AuthWindow);
