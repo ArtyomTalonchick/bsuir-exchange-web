@@ -3,8 +3,12 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import withAlert from './components/withAlert';
 import Header from './components/header/Header';
+import OrderBook from './components/orderBook/OrderBook';
+import Chart from './components/chart/Chart';
+import LastTrades from './components/lastTrades/LastTrades';
 
 import './App.scss';
+import MarketWatch from "./components/marketWatch/MarketWatch";
 
 class App extends React.Component {
     render() {
@@ -20,7 +24,12 @@ class App extends React.Component {
                     </Alert>
                 </Snackbar>
                 <Header/>
-                BSUIR Exchange
+                <div className='main-container _df-aic-jcsb'>
+                    <MarketWatch/>
+                    <OrderBook/>
+                    <Chart/>
+                    <LastTrades/>
+                </div>
             </div>
         );
     }

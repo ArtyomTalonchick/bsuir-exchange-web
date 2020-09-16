@@ -21,6 +21,22 @@ i {
   justify-content: space-around;
 }
 
+div.main__block {
+  border: 1px solid var(--primary-dark-4);
+  border-radius: 10px;
+  height: 100%;
+  margin: 20px;
+
+  .main__block-header {
+    text-align: center;
+    background: var(--primary-light-3);
+    color: var(--primary-dark-5);
+    padding: 0 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+}
+
 button.primary {
   color: #ffffff;
   background: var(--primary-light-1);
