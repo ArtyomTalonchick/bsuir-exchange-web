@@ -1,20 +1,24 @@
 import React from 'react';
-import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import {Snackbar, Backdrop, CircularProgress} from '@material-ui/core';
 import withAlert from './components/withAlert';
+import withLoader from './components/withLoader';
 import Header from './components/header/Header';
 import OrderBook from './components/orderBook/OrderBook';
 import Chart from './components/chart/Chart';
 import LastTrades from './components/lastTrades/LastTrades';
+import MarketWatch from './components/marketWatch/MarketWatch';
+import Market from './components/market/Market';
 
 import './App.scss';
-import MarketWatch from "./components/marketWatch/MarketWatch";
-import Market from "./components/market/Market";
 
 class App extends React.Component {
     render() {
         return (
             <div>
+                <Backdrop open={this.props.loading} className='loader'>
+                    <CircularProgress color='inherit'/>
+                </Backdrop>
                 <Snackbar
                     anchorOrigin={{vertical: 'top', horizontal: 'center'}}
                     autoHideDuration={3000}
@@ -39,4 +43,4 @@ class App extends React.Component {
     }
 }
 
-export default withAlert(App);
+export default withAlert(withLoader(App));
