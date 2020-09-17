@@ -3,10 +3,11 @@
 body {
   margin: 0;
   padding: 0;
+  background: var(--color-surface);
 }
 
 i {
-  color: var(--primary-dark-5);
+  color: #FFFFFF;
 }
 
 ._df-aic-jcsb {
@@ -22,15 +23,15 @@ i {
 }
 
 div.main__block {
-  border: 1px solid var(--primary-dark-4);
+  border: 1px solid var(--color-primary);
   border-radius: 10px;
   height: 100%;
   margin: 20px;
 
   .main__block-header {
     text-align: center;
-    background: var(--primary-light-3);
-    color: var(--primary-dark-5);
+    background: var(--color-primary-light-1);
+    color: #FFFFFF;
     padding: 0 20px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -38,19 +39,15 @@ div.main__block {
 }
 
 button.primary {
-  color: #ffffff;
-  background: var(--primary-light-1);
-  border: 1px solid var(--primary-dark-4);
+  color: #000000;
+  background: var(--color-secondary);
+  border: 1px solid var(--color-primary);
   border-radius: 3px;
   min-width: 120px;
   height: 28px;
   text-transform: none;
 
   &:hover {
-    background: var(--primary-light-2);
-  }
-
-  &:focus {
-    background: var(--primary-light-3);
+    background: var(--color-secondary-light-1);
   }
 }

@@ -5,12 +5,12 @@
   left: 0;
   bottom: 0;
   width: 20px;
-  background: var(--primary-light-3);
-  border-right: 1px solid var(--primary);
-  box-shadow: 0 0 0 0 #ffffff, 0 4px 5px 0 rgba(0,0,0,0.14), 0 0 0 0 #ffffff, 0 0 0 0 #ffffff;
+  background: var(--color-primary-light-1);
+  border-right: 1px solid var(--color-primary);
+  box-shadow: 0 0 0 0 #ffffff, 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 0 0 0 #ffffff, 0 0 0 0 #ffffff;
 
   &._inner {
-    top: 0px;
+    top: 0;
     left: 200px;
   }
 }
@@ -20,8 +20,9 @@ button.market-watch__button, .market-watch__button:focus {
   transform: rotate(90deg);
   top: 120px;
   left: -18px;
-  background: var(--primary-light-3);
-  border: 1px solid var(--primary);
+  background: var(--color-primary-light-1);
+  color: #FFFFFF;
+  border: 1px solid var(--color-primary);
   border-bottom: navajowhite;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;

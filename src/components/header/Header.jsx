@@ -53,7 +53,9 @@ class Header extends React.Component {
                 <Toolbar className='header _df-aic-jcsb'>
 
                     <div>
-                        <img src={logo} className='header__logo _mrg-r' alt='BSUIR Eschange'/>
+                        <div className='header__logo _mrg-r'>
+                            <img src={logo} alt='BSUIR Eschange'/>
+                        </div>
                         <Typography variant='h6' className='header__name'>
                             BSUIR Eschange
                         </Typography>

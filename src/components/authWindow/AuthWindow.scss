@@ -1,9 +1,10 @@
 .auth_bar {
-  background: var(--primary-light-4);
+  background: var(--color-primary-light-2);
+  color: #FFFFFF;
   text-transform: none;
 
   .MuiTabs-indicator {
-    background: var(--primary-dark-5);
+    background: var(--color-secondary);
   }
 }
 
