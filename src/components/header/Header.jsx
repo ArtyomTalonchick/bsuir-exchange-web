@@ -48,7 +48,7 @@ class Header extends React.Component {
                 {currencyName: 'BTC', volume: 0.001},
                 {currencyName: 'LTC', volume: 0},
             ],
-            accounts = ['900934', '000021', '213431'];
+            accounts = ['Cash', 'Crypto', 'Fiat'];
 
         return (
             <AppBar position='static'>

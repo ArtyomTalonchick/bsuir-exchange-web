@@ -1,27 +1,27 @@
 import React from 'react';
 import {TextField} from '@material-ui/core';
 
+import accountsServices from '../../services/accountsServices';
+import validateHelper from '../../helpers/validateHelper';
 import Window from '../window/Window';
 import withAlert from '../withAlert';
 import withUser from '../withUser';
 import withLoader from '../withLoader';
-import validateHelper from '../../helpers/validateHelper';
-
-import './AccountWindow.scss';
 
 class AccountWindow extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            accountName: ''
+        };
     }
 
     onChangeField = e => this.setState({[e.currentTarget.name]: e.currentTarget.value})
 
     onSubmit = () => {
-        return;
         this.props.startLoading();
-        (() => ({}))()
+        accountsServices.create(this.state.accountName)
             .then(response => {
 
                 this.props.onClose();
@@ -35,7 +35,7 @@ class AccountWindow extends React.Component {
     }
 
     render() {
-        const submitDisabled = !(validateHelper.email('') && false);
+        const submitDisabled = !validateHelper.accountName(this.state.accountName);
         return (
             <Window
                 open={this.props.open}
@@ -45,14 +45,15 @@ class AccountWindow extends React.Component {
                 submitDisabled={submitDisabled}
                 title='Create account'
             >
-                <div>
+                <div className='_padding'>
                     <TextField
-                        error={!validateHelper.password(this.state.name)}
-                        label='Password'
+                        error={!validateHelper.accountName(this.state.accountName)}
+                        label='Name'
                         variant='outlined'
-                        name='name'
-                        value={this.state.name}
+                        name='accountName'
+                        value={this.state.accountName}
                         onChange={this.onChangeField}
+                        fullWidth
                     />
                 </div>
             </Window>
