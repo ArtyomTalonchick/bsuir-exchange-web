@@ -3,8 +3,8 @@ const apiUrl = 'https://bsuir-exchange-api.herokuapp.com/';
 
 export const endpoints = {
     user: {
-        login: `${apiUrl}user/login`,
-        registration: `${apiUrl}user/registration`,
+        login: `${apiUrl}users/login`,
+        registration: `${apiUrl}users/registration`,
     },
 
 };
