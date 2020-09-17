@@ -1,20 +1,41 @@
-.auth_bar {
-  background: var(--color-primary-light-2);
-  color: #FFFFFF;
-  text-transform: none;
+div.bank-card__field {
+  &._owner {
+    margin-right: 20px;
 
-  .MuiTabs-indicator {
-    background: var(--color-secondary);
+    input {
+      text-transform: uppercase;
+    }
+  }
+
+  &._cvv {
+    width: 100px;
+  }
+
+  &._number {
+    margin-top: 20px;
+  }
+
+  &._year {
+    margin-left: 20px;
+    margin-right: auto;
+  }
+
+  &._currency {
+    margin-left: 20px;
+    width: 150px;
+  }
+
+}
+
+div.bank-card__date {
+  display: flex;
+  margin-top: 20px;
+
+  img {
+    margin-left: 10px;
   }
 }
 
-.auth_form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px 20px 0 20px;
-
-  > div {
-    margin-bottom: 20px;
-  }
+.bank-card__values {
+  margin-top: 20px;
 }
