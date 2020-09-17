@@ -4,6 +4,7 @@ import {AppBar, Toolbar, Typography, Button, Menu, MenuItem, Tooltip, IconButton
 import withUser from '../withUser';
 import AuthWindow from '../authWindow/AuthWindow';
 import AccountWindow from '../accountWindow/AccountWindow';
+import AssetsWindow from '../assetsWindow/AssetsWindow';
 
 import './Header.scss';
 import logo from '../../static/logo.png';
@@ -18,6 +19,7 @@ class Header extends React.Component {
             accountsAnchorEl: null,
             openAuthWindow: false,
             openAccountWindow: false,
+            openAssetsWindow: false,
         };
 
     }
@@ -34,9 +36,8 @@ class Header extends React.Component {
     onOpenAuthWindow = () => this.setState({openAuthWindow: true});
     onCloseAuthWindow = () => this.setState({openAuthWindow: false});
 
-    onLogout = () => {
-        this.props.login();
-    }
+    onOpenAssetsWindow = () => this.setState({openAssetsWindow: true});
+    onCloseAssetsWindow = () => this.setState({openAssetsWindow: false});
 
     render() {
         const
@@ -89,6 +90,7 @@ class Header extends React.Component {
                                     <span>{asset.volume}</span>
                                 </MenuItem>
                             )}
+                            <MenuItem onClick={this.onOpenAssetsWindow} className='_active'>Top up</MenuItem>
                         </Menu>
                     </div>
 
@@ -114,7 +116,7 @@ class Header extends React.Component {
                         </Typography>
                         {this.props.user ?
                             <Tooltip title='Logout'>
-                                <IconButton onClick={this.onLogout}>
+                                <IconButton onClick={this.props.logout}>
                                     <i className='fa fa-sign-out'/>
                                 </IconButton>
                             </Tooltip>
@@ -130,6 +132,8 @@ class Header extends React.Component {
                     <AuthWindow open={this.state.openAuthWindow} onClose={this.onCloseAuthWindow}/>
 
                     <AccountWindow open={this.state.openAccountWindow} onClose={this.onCloseAccountWindow}/>
+
+                    <AssetsWindow open={this.state.openAssetsWindow} onClose={this.onCloseAssetsWindow}/>
 
                 </Toolbar>
             </AppBar>
