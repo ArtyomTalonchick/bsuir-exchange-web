@@ -3,6 +3,7 @@ import {AppBar, Toolbar, Typography, Button, Menu, MenuItem, Tooltip, IconButton
 
 import withUser from '../withUser';
 import AuthWindow from '../authWindow/AuthWindow';
+import AccountWindow from '../accountWindow/AccountWindow';
 
 import './Header.scss';
 import logo from '../../static/logo.png';
@@ -16,6 +17,7 @@ class Header extends React.Component {
             assetsAnchorEl: null,
             accountsAnchorEl: null,
             openAuthWindow: false,
+            openAccountWindow: false,
         };
 
     }
@@ -26,9 +28,8 @@ class Header extends React.Component {
     onShowAccounts = e => this.setState({accountsAnchorEl: e.currentTarget});
     onCloseAccounts = () => this.setState({accountsAnchorEl: null});
 
-    onAddAccount = () => {
-        console.log('onAddAccount');
-    }
+    onOpenAccountWindow = () => this.setState({openAccountWindow: true});
+    onCloseAccountWindow = () => this.setState({openAccountWindow: false});
 
     onOpenAuthWindow = () => this.setState({openAuthWindow: true});
     onCloseAuthWindow = () => this.setState({openAuthWindow: false});
@@ -103,7 +104,7 @@ class Header extends React.Component {
                             className='header__menu'
                         >
                             {accounts.map(account => <MenuItem key={account}>{account}</MenuItem>)}
-                            <MenuItem onClick={this.onAddAccount} className='_active'>Add new</MenuItem>
+                            <MenuItem onClick={this.onOpenAccountWindow} className='_active'>Add new</MenuItem>
                         </Menu>
                     </div>
 
@@ -127,6 +128,8 @@ class Header extends React.Component {
                     </div>
 
                     <AuthWindow open={this.state.openAuthWindow} onClose={this.onCloseAuthWindow}/>
+
+                    <AccountWindow open={this.state.openAccountWindow} onClose={this.onCloseAccountWindow}/>
 
                 </Toolbar>
             </AppBar>
