@@ -1,0 +1,15 @@
+.market-bar{
+  .MuiTabs-indicator {
+    background: var(--color-secondary);
+  }
+}
+
+.MuiTab-root.block-header {
+  min-width: 0;
+  margin-top: 20px;
+}
+
+.market {
+  height: 160px;
+  margin-top: -10px;
+}

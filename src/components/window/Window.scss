@@ -6,15 +6,10 @@ div.window {
   width: 50%;
   height: auto;
   outline: none;
-  border-radius: 10px;
 }
 
 .window__header {
-  background: var(--color-primary);
-  color: #FFFFFF;
-  padding: 0 20px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+
 }
 
 .window__controls {

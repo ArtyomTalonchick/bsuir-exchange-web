@@ -1,5 +1,5 @@
 import React from 'react';
-import {IconButton, Paper, Typography} from '@material-ui/core';
+import {Paper, Typography} from '@material-ui/core';
 
 import './LastTrades.scss';
 
@@ -10,9 +10,9 @@ class LastTrades extends React.Component {
 
     render() {
         return (
-            <Paper className='main__block last-trades'>
+            <Paper className='block-container last-trades'>
                 <>
-                    <div className='main__block-header'>
+                    <div className='block-header'>
                         <Typography variant='h6'>
                             Last trades
                         </Typography>

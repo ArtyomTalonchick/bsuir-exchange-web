@@ -10,7 +10,7 @@ class Chart extends React.Component {
 
     render() {
         return (
-            <Paper className='main__block chart-container'>
+            <Paper className='block-container chart-container'>
 
             </Paper>
         );

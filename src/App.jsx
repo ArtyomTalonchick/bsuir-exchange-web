@@ -9,6 +9,7 @@ import LastTrades from './components/lastTrades/LastTrades';
 
 import './App.scss';
 import MarketWatch from "./components/marketWatch/MarketWatch";
+import Market from "./components/market/Market";
 
 class App extends React.Component {
     render() {
@@ -26,7 +27,10 @@ class App extends React.Component {
                 <Header/>
                 <div className='main-container _df-aic-jcsb'>
                     <MarketWatch/>
-                    <OrderBook/>
+                    <div className='main-pair-inner'>
+                        <OrderBook/>
+                        <Market/>
+                    </div>
                     <Chart/>
                     <LastTrades/>
                 </div>

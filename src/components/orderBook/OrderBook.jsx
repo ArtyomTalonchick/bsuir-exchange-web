@@ -10,9 +10,9 @@ class OrderBook extends React.Component {
 
     render() {
         return (
-            <Paper className='main__block order-book'>
+            <Paper className='block-container order-book'>
                 <>
-                    <div className='main__block-header'>
+                    <div className='block-header'>
                         <Typography variant='h6'>
                             Order book
                         </Typography>

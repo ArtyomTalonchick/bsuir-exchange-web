@@ -38,13 +38,12 @@ div.header {
 .header__menu {
   &._assets {
     ul {
-      min-width: 200px;
     }
   }
 
   ul {
+    min-width: 120px;
     li {
-      margin-right: 10px;
       display: flex;
       justify-content: space-between;
 

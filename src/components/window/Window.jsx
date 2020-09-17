@@ -13,9 +13,9 @@ export default class Window extends React.Component {
                 open={this.props.open}
                 // onClose={this.props.onClose}
             >
-                <Paper className='window'>
+                <Paper className='window block-container'>
                     <>
-                        <div className='window__header _df-aic-jcsb'>
+                        <div className='window__header block-header _df-aic-jcsb'>
                             <Typography variant='h6' className=''>
                                 {this.props.title}
                             </Typography>

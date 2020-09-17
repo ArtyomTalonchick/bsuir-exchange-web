@@ -69,9 +69,11 @@ class Header extends React.Component {
                             <span className='_mrg-r'>Current Assets: </span>
                             <b className='_mrg-r'>USD: 1000</b> <b>EUR: 1900</b>
                         </Typography>
+                    </div>
 
+                    <div>
                         <Button onClick={this.onShowAssets} className='primary'>
-                            Show Assets
+                            Assets
                         </Button>
                         <Menu
                             anchorEl={this.state.assetsAnchorEl}
@@ -90,11 +92,8 @@ class Header extends React.Component {
                     </div>
 
                     <div>
-                        <Typography variant='subtitle2' className='_mrg-r'>
-                            Account:
-                        </Typography>
                         <Button onClick={this.onShowAccounts} className='primary'>
-                            900934
+                            Account
                         </Button>
                         <Menu
                             anchorEl={this.state.accountsAnchorEl}

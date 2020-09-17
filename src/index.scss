@@ -22,20 +22,21 @@ i {
   justify-content: space-around;
 }
 
-div.main__block {
+div.block-container {
   border: 1px solid var(--color-primary);
   border-radius: 10px;
-  height: 100%;
-  margin: 20px;
+}
 
-  .main__block-header {
-    text-align: center;
-    background: var(--color-primary-light-1);
-    color: #FFFFFF;
-    padding: 0 20px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
+div.block-header,
+button.block-header{
+  text-align: center;
+  background: var(--color-primary-light-1);
+  color: #FFFFFF;
+  padding: 0 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-transform: none;
+  height: min-content;
 }
 
 button.primary {
