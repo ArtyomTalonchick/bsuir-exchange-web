@@ -5,12 +5,12 @@ let error = null;
 
 const error$ = new BehaviorSubject(error);
 
-const setError = _error => {
+export const setError = _error => {
     error = _error;
     error$.next(error);
 };
 
-const clearError = () => setError(null);
+export const clearError = () => setError(null);
 
 export default function (WrappedComponent) {
     return class extends React.Component {

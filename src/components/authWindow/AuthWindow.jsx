@@ -28,18 +28,8 @@ class AuthWindow extends React.Component {
 
     onSubmit = () => {
         const method = this.state.mode === 0 ? userService.login : userService.registration;
-        this.props.startLoading();
         method(this.state.username, this.state.password)
-            .then(response => {
-                this.props.login(JSON.parse(response.data));
-                this.props.onClose();
-            })
-            .catch(reason => {
-                const status = reason.response.status;
-                const error = status === 403 ? 'Email or password is wrong' : 'Server error, sorry, try again later';
-                this.props.setError(error);
-            })
-            .finally(this.props.finishLoading);
+            .then(success => success && this.props.onClose());
     }
 
     render() {

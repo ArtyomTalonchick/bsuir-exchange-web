@@ -1,6 +1,7 @@
 import React from 'react';
 import {AppBar, Toolbar, Typography, Button, Menu, MenuItem, Tooltip, IconButton} from '@material-ui/core';
 
+import userService from '../../services/userService';
 import withUser from '../withUser';
 import AuthWindow from '../authWindow/AuthWindow';
 import AccountWindow from '../accountWindow/AccountWindow';
@@ -116,7 +117,7 @@ class Header extends React.Component {
                         </Typography>
                         {this.props.user ?
                             <Tooltip title='Logout'>
-                                <IconButton onClick={this.props.logout}>
+                                <IconButton onClick={userService.logout}>
                                     <i className='fa fa-sign-out'/>
                                 </IconButton>
                             </Tooltip>

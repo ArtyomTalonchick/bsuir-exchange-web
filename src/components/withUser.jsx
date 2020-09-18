@@ -9,14 +9,12 @@ try {
 
 const user$ = new BehaviorSubject(user);
 
-const setUser = _user => {
+export const setUser = _user => {
     user = _user;
     localStorage.setItem('User', JSON.stringify(user));
     localStorage.setItem('Authorization', user && user.token);
     user$.next(user);
 };
-
-const logout = () => setUser(null);
 
 export default function (WrappedComponent) {
     return class extends React.Component {
@@ -41,8 +39,6 @@ export default function (WrappedComponent) {
                 <WrappedComponent
                     {...this.props}
                     user={this.state.user}
-                    login={setUser}
-                    logout={logout}
                 />
             );
         }

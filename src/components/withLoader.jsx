@@ -10,6 +10,9 @@ const setLoading = _loader => {
     loader$.next(loader);
 };
 
+export const startLoading = () => setLoading(true);
+export const finishLoading = () => setLoading(false);
+
 export default function (WrappedComponent) {
     return class extends React.Component {
         constructor(props) {
@@ -31,8 +34,8 @@ export default function (WrappedComponent) {
                 <WrappedComponent
                     {...this.props}
                     loading={this.state.loader}
-                    startLoading={() => setLoading(true)}
-                    finishLoading={() => setLoading(false)}
+                    startLoading={startLoading}
+                    finishLoading={finishLoading}
                 />
             );
         }
