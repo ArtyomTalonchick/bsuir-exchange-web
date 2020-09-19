@@ -141,7 +141,7 @@ class AssetsWindow extends React.Component {
                         <TextField
                             select
                             label='Currency'
-                            name='currency'
+                            name='currencyId'
                             value={this.state.currencyId}
                             onChange={this.onChangeField}
                             className='bank-card__field _currency'
