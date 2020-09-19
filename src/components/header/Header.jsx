@@ -50,7 +50,7 @@ class Header extends React.Component {
 
     render() {
         const currentAccount = this.props.getCurrentAccount();
-        const symbolName = 'USDEUR';
+        const currentSymbol = this.props.getCurrentSymbol();
 
         return (
             <AppBar position='static'>
@@ -67,11 +67,16 @@ class Header extends React.Component {
 
                     <div className='_df-aic-jcsa'>
                         <Typography variant='subtitle2'>
-                            <span className='_mrg-r'>Current Symbol:</span><b>{this.props.getCurrentSymbol()?.name}</b>
+                            <span className='_mrg-r'>Current Symbol:</span><b>{currentSymbol?.name}</b>
                         </Typography>
                         <Typography variant='subtitle2'>
                             <span className='_mrg-r'>Current Assets: </span>
-                            <b className='_mrg-r'>USD: 1000</b> <b>EUR: 1900</b>
+                            <b className='_mrg-r'>
+                                {currentSymbol?.currency1?.name}: {this.props.getAssetByCurrencyId(currentSymbol?.currency1?.id)?.volume || 0}
+                            </b>
+                            <b>
+                                {currentSymbol?.currency2?.name}: {this.props.getAssetByCurrencyId(currentSymbol?.currency2?.id)?.volume || 0}
+                            </b>
                         </Typography>
                     </div>
 
