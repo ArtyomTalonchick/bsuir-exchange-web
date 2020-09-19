@@ -16,6 +16,8 @@ export const endpoints = {
 
     accounts: {
         create: `${apiUrl}accounts`,
-    }
+    },
+
+    symbols: `${apiUrl}symbols`,
 
 };

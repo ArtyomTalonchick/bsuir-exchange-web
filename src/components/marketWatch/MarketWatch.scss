@@ -11,11 +11,12 @@
 
   &._inner {
     top: 0;
-    left: 200px;
+    left: 350px;
   }
 }
 
 button.market-watch__button, .market-watch__button:focus {
+  cursor: pointer;
   position: fixed;
   transform: rotate(90deg);
   top: 120px;
@@ -29,18 +30,34 @@ button.market-watch__button, .market-watch__button:focus {
   outline: none;
 
   &._inner {
-    left: 182px;
+    left: 332px;
   }
 }
 
 div.MuiDrawer-paperAnchorLeft {
-  width: 240px;
+  width: 390px;
   background: transparent;
   box-shadow: none;
 }
 
 .market-watch__content {
-  width: 200px;
+  width: 350px;
   height: 100vh;
-  background: var(--color-surface);
+  overflow: auto;
+
+  .Component-horizontalScrollContainer-16 tr {
+    &:hover {
+      background-color: var(--color-secondary-light-2) !important;
+    }
+  }
+
+  .MuiPaper-root {
+    height: 100%;
+  }
+
+  tfoot.MuiTableFooter-root {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
 }
