@@ -29,6 +29,8 @@ export const setCurrentSymbol = id => {
 
 export const getCurrentSymbol = () => symbols.length ? symbols[0] : null;
 
+export const onSymbolChangeSubscribe = handler => symbols$.subscribe(handler);
+
 export default WrappedComponent =>
     class extends React.Component {
         constructor(props) {
