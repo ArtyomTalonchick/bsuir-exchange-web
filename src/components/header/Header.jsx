@@ -81,7 +81,7 @@ class Header extends React.Component {
                     </div>
 
                     <div>
-                        <Button onClick={this.onShowAssets} className='primary'>
+                        <Button onClick={this.onShowAssets} disabled={!this.props.user}  className='primary'>
                             Assets
                         </Button>
                         <Menu
@@ -102,7 +102,7 @@ class Header extends React.Component {
                     </div>
 
                     <div>
-                        <Button onClick={this.onShowAccounts} className='primary'>
+                        <Button onClick={this.onShowAccounts} disabled={!this.props.user}  className='primary'>
                             Account
                         </Button>
                         <Menu

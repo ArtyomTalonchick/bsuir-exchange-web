@@ -3,6 +3,8 @@ import {endpoints} from '../constants/endpoints';
 import {finishLoading, startLoading} from '../components/withLoader';
 import {setError} from '../components/withAlert';
 import {setUser} from '../components/withUser';
+import {setAccounts} from '../components/withAccounts';
+import {setAssets} from '../components/withAssets';
 
 const _login = (username, password) => RestRequest.post(endpoints.user.login, {},{username, password});
 
@@ -28,7 +30,11 @@ const registration = (username, password) => auth(_registration, username, passw
 
 const login = (username, password) => auth(_login, username, password);
 
-const logout = () => setUser(null);
+const logout = () => {
+    setUser(null);
+    setAccounts([]);
+    setAssets([]);
+}
 
 export default {
     login,
