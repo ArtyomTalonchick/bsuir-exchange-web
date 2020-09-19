@@ -34,7 +34,6 @@ const updateOrderBook = () => {
     setTimeout(() => {
         const symbol = getCurrentSymbol();
         if (!symbol) return;
-        console.log(`updateOrderBook for ${symbol.name}`)
         setOrderBook(orderBook);
         finishLoading();
     }, 300);

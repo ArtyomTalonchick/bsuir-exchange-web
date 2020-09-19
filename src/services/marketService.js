@@ -6,7 +6,6 @@ const createOrder = props => {
         const accountId = getCurrentAccount()?.id;
         const data = {...props, account_id: accountId};
         if (accountId) {
-            console.log(data);
             setSuccess('Order was successfully created');
             return new Promise((resolve => resolve()));
         } else {

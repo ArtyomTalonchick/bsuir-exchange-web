@@ -29,7 +29,6 @@ const updateLastTrades = () => {
     startLoading();
     setTimeout(() => {
         const symbol = getCurrentSymbol();
-        console.log(`updateLastTrades for ${symbol}`)
         setLastTrades(lastTrades);
         finishLoading();
     }, 300);
