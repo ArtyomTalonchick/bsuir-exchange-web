@@ -4,13 +4,14 @@ import {AppBar, Toolbar, Typography, Button, Menu, MenuItem, Tooltip, IconButton
 import userService from '../../services/userService';
 import withUser from '../withUser';
 import withAccounts from '../withAccounts';
+import withAssets from '../withAssets';
+import withSymbols from '../withSymbols';
 import AuthWindow from '../authWindow/AuthWindow';
 import AccountWindow from '../accountWindow/AccountWindow';
 import AssetsWindow from '../assetsWindow/AssetsWindow';
 
 import './Header.scss';
 import logo from '../../static/logo.png';
-import withAssets from "../withAssets";
 
 class Header extends React.Component {
 
@@ -66,7 +67,7 @@ class Header extends React.Component {
 
                     <div className='_df-aic-jcsa'>
                         <Typography variant='subtitle2'>
-                            <span className='_mrg-r'>Current Symbol:</span><b>{symbolName}</b>
+                            <span className='_mrg-r'>Current Symbol:</span><b>{this.props.getCurrentSymbol()?.name}</b>
                         </Typography>
                         <Typography variant='subtitle2'>
                             <span className='_mrg-r'>Current Assets: </span>
@@ -151,4 +152,4 @@ class Header extends React.Component {
     }
 }
 
-export default withUser(withAccounts(withAssets(Header)));
+export default withUser(withAccounts(withAssets(withSymbols(Header))));
