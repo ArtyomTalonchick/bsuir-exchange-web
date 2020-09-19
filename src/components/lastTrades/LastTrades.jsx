@@ -21,7 +21,7 @@ class LastTrades extends React.Component {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Time</TableCell>
-                                    <TableCell align='center'>Prise</TableCell>
+                                    <TableCell align='center'>Price</TableCell>
                                     <TableCell align='right'>Amount</TableCell>
                                 </TableRow>
                             </TableHead>

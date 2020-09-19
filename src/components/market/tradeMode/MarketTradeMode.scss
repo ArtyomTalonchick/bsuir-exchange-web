@@ -1,0 +1,11 @@
+.market-price {
+  width: 40%;
+  text-align: center;
+  &._sell {
+    color: var(--color-sell);
+  }
+
+  &._buy {
+    color: var(--color-buy);
+  }
+}

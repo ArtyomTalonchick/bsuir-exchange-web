@@ -1,0 +1,12 @@
+button.market-buttons {
+  color: #FFFFFF;
+  width: 40%;
+
+  &._sell {
+    background: var(--color-sell);
+  }
+
+  &._buy {
+    background: var(--color-buy);
+  }
+}

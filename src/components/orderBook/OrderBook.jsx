@@ -41,7 +41,7 @@ class OrderBook extends React.Component {
                         <Table stickyHeader>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell align='left'>Prise</TableCell>
+                                    <TableCell align='left'>Price</TableCell>
                                     <TableCell align='right'>Amount</TableCell>
                                 </TableRow>
                             </TableHead>

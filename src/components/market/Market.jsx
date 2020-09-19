@@ -1,6 +1,10 @@
 import React from 'react';
 import {Paper, Tab, Tabs} from '@material-ui/core';
 
+import marketService from '../../services/marketService';
+import MarketTradeMode from './tradeMode/MarketTradeMode';
+import MarketLimitMode from './limitMode/MarketLimitMode';
+
 import './Market.scss';
 
 class Market extends React.Component {
@@ -13,6 +17,8 @@ class Market extends React.Component {
     }
 
     onChangeMode = (e, mode) => this.setState({mode, username: '', password: '', password2: ''});
+
+    onSubmit = props => marketService.createOrder(props);
 
     render() {
         return (
@@ -27,6 +33,9 @@ class Market extends React.Component {
                     <Tab label='Limit' className='block-header'/>
                 </Tabs>
                 <Paper className='main__block market'>
+                    <MarketTradeMode onSubmit={this.onSubmit} hidden={this.state.mode !== 0}/>
+                    <MarketLimitMode onSubmit={this.onSubmit} hidden={this.state.mode !== 1}/>
+
                 </Paper>
             </>
         );

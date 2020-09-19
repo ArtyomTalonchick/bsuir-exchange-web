@@ -1,4 +1,4 @@
-.market-bar{
+.market-bar {
   .MuiTabs-indicator {
     background: var(--color-secondary);
   }
@@ -10,6 +10,21 @@
 }
 
 .market {
-  height: 160px;
-  margin-top: -10px;
+  height: 130px;
+  padding: 10px;
+
+  .market__mode {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+
+    &._hidden {
+      display: none;
+    }
+
+    input.MuiInput-input {
+      padding: 2px;
+    }
+  }
 }
