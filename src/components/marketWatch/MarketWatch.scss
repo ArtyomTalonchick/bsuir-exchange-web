@@ -44,6 +44,7 @@ div.MuiDrawer-paperAnchorLeft {
   width: 350px;
   height: 100vh;
   overflow: auto;
+  background: var(--color-surface);
 
   .Component-horizontalScrollContainer-16 tr {
     &:hover {
@@ -51,13 +52,13 @@ div.MuiDrawer-paperAnchorLeft {
     }
   }
 
-  .MuiPaper-root {
-    height: 100%;
-  }
-
-  tfoot.MuiTableFooter-root {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-  }
+  //.MuiPaper-root {
+  //  height: 100%;
+  //}
+  //
+  //tfoot.MuiTableFooter-root {
+  //  position: absolute;
+  //  width: 100%;
+  //  bottom: 0;
+  //}
 }
