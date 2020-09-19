@@ -33,14 +33,19 @@ class Header extends React.Component {
     onShowAccounts = e => this.setState({accountsAnchorEl: e.currentTarget});
     onCloseAccounts = () => this.setState({accountsAnchorEl: null});
 
-    onOpenAccountWindow = () => this.setState({openAccountWindow: true});
+    onOpenAccountWindow = () => this.setState({openAccountWindow: true, accountsAnchorEl: null});
     onCloseAccountWindow = () => this.setState({openAccountWindow: false});
 
     onOpenAuthWindow = () => this.setState({openAuthWindow: true});
     onCloseAuthWindow = () => this.setState({openAuthWindow: false});
 
-    onOpenAssetsWindow = () => this.setState({openAssetsWindow: true});
+    onOpenAssetsWindow = () => this.setState({openAssetsWindow: true, assetsAnchorEl: null});
     onCloseAssetsWindow = () => this.setState({openAssetsWindow: false});
+
+    setCurrentAccount = id => {
+        this.props.setCurrentAccount(id);
+        this.onCloseAccounts();
+    }
 
     render() {
         const currentAccount = this.props.getCurrentAccount();
@@ -81,7 +86,7 @@ class Header extends React.Component {
                             className='header__menu'
                         >
                             {this.props.assets.map(asset =>
-                                <MenuItem key={asset.currencyName}>
+                                <MenuItem key={asset.currencyName} onClick={this.onCloseAssets}>
                                     <span className='_mrg-r'>{asset.currency_name}</span>
                                     <span>{asset.volume}</span>
                                 </MenuItem>
@@ -105,7 +110,7 @@ class Header extends React.Component {
                                 <MenuItem
                                     key={id}
                                     value={id}
-                                    onClick={() => this.props.setCurrentAccount(id)}
+                                    onClick={() => this.setCurrentAccount(id)}
                                     className={id === currentAccount.id ? '_selected' : ''}
                                 >
                                     {name}
