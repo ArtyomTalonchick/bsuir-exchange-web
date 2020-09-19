@@ -41,6 +41,7 @@ class MarketWatch extends React.Component {
                                 title=''
                                 onRowClick={this.onSymbolClick}
                                 options={{
+                                    emptyRowsWhenPaging: false,
                                     minBodyHeight: '100%',
                                     rowStyle: rowData =>
                                         rowData.id === currentSymbol.id ? {backgroundColor: '#f9aa33'} : {}
