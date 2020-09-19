@@ -24,10 +24,10 @@ class App extends React.Component {
                 <Snackbar
                     anchorOrigin={{vertical: 'top', horizontal: 'center'}}
                     autoHideDuration={3000}
-                    open={!!this.props.error}
-                    onClose={this.props.clearError}>
-                    <Alert onClose={this.props.clearError} severity='error'>
-                        {this.props.error}
+                    open={!!this.props.message}
+                    onClose={this.props.clearMessage}>
+                    <Alert onClose={this.props.clearError} severity={this.props.message?.type}>
+                        {this.props.message?.text}
                     </Alert>
                 </Snackbar>
                 <Header/>

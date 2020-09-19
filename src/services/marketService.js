@@ -1,4 +1,4 @@
-import {setError} from '../providers/alertsProvider';
+import {setError, setSuccess} from '../providers/alertsProvider';
 import {getCurrentAccount} from '../providers/accountsProvider';
 
 const createOrder = props => {
@@ -7,6 +7,7 @@ const createOrder = props => {
         const data = {...props, account_id: accountId};
         if (accountId) {
             console.log(data);
+            setSuccess('Order was successfully created');
             return new Promise((resolve => resolve()));
         } else {
             setError('Select an account and try again');

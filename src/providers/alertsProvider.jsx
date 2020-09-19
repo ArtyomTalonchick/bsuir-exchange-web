@@ -1,27 +1,31 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
 
-let error = null;
+let message = null;
 
-const error$ = new BehaviorSubject(error);
+const message$ = new BehaviorSubject(message);
 
-export const setError = _error => {
-    error = _error;
-    error$.next(error);
-};
+const setMessage = _message => {
+    message = _message;
+    message$.next(message);
+}
 
-export const clearError = () => setError(null);
+export const setError = text => setMessage({type: 'error', text});
+
+export const setSuccess = text => setMessage({type: 'success', text});
+
+export const clearMessage = () => setMessage(null);
 
 export default WrappedComponent =>
     class extends React.Component {
         constructor(props) {
             super(props);
 
-            this.state = {error};
+            this.state = {message};
         }
 
         componentDidMount() {
-            this.subscription = error$.subscribe(error => this.setState({error}));
+            this.subscription = message$.subscribe(message => this.setState({message}));
         }
 
         componentWillUnmount() {
@@ -32,9 +36,9 @@ export default WrappedComponent =>
             return (
                 <WrappedComponent
                     {...this.props}
-                    error={this.state.error}
+                    message={this.state.message}
                     setError={setError}
-                    clearError={clearError}
+                    clearMessage={clearMessage}
                 />
             );
         }
