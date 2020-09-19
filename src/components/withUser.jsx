@@ -1,5 +1,6 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
+import {setAccounts} from './withAccounts';
 
 let user = null;
 try {
@@ -13,6 +14,7 @@ export const setUser = _user => {
     user = _user;
     localStorage.setItem('User', JSON.stringify(user));
     localStorage.setItem('Authorization', user && user.token);
+    user?.accounts && setAccounts(user.accounts);
     user$.next(user);
 };
 

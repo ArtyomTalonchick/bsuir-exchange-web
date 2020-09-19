@@ -7,4 +7,15 @@ export const endpoints = {
         registration: `${apiUrl}users/registration`,
     },
 
+    currencies: `${apiUrl}currencies`,
+
+    assets: {
+        get: account_id => `${apiUrl}assets/${account_id}/`,
+        create: `${apiUrl}assets`,
+    },
+
+    accounts: {
+        create: `${apiUrl}accounts`,
+    }
+
 };

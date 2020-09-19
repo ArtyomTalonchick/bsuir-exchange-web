@@ -1,11 +1,13 @@
 import React from 'react';
-import {TextField, MenuItem} from '@material-ui/core';
+import {MenuItem, TextField} from '@material-ui/core';
 
+import currenciesService from '../../services/currenciesService';
+import assetsService from '../../services/assetsService';
+import validateHelper from '../../helpers/validateHelper';
 import Window from '../window/Window';
 import withAlert from '../withAlert';
 import withUser from '../withUser';
 import withLoader from '../withLoader';
-import validateHelper from '../../helpers/validateHelper';
 
 import './AssetsWindow.scss';
 import card1 from '../../static/card1.jpg';
@@ -21,7 +23,7 @@ const DEFAULT_STATE = {
     month: '01',
     year: '2020',
     amount: '',
-    currency: '',
+    currencyId: '',
 }
 
 class AssetsWindow extends React.Component {
@@ -33,12 +35,8 @@ class AssetsWindow extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (!prevProps.open && this.props.open) {
-            this.props.startLoading();
-            const currencies = [{id: 0, name: 'USD'}, {id: 1, name: 'EUR'}, {id: 1, name: 'BTC'}];
-            setTimeout(() => {
-                this.setState({currencies, currency: currencies[0]?.id});
-                this.props.finishLoading();
-            }, 500);
+            currenciesService.getAll()
+                .then(currencies => this.setState({currencies, currencyId: currencies[0]?.id}));
         } else if (prevProps.open && !this.props.open) {
             this.setState(JSON.parse(JSON.stringify(DEFAULT_STATE)));
         }
@@ -46,24 +44,13 @@ class AssetsWindow extends React.Component {
 
     onChangeField = e => this.setState({[e.target.name]: e.target.value})
 
-    onSubmit = () => {
-        return;
-        this.props.startLoading();
-        (() => ({}))()
-            .then(response => {
-
-                this.props.onClose();
-            })
-            .catch(reason => {
-                const status = reason.response.status;
-                const error = status === 403 ? 'Access denied' : 'Server error, sorry, try again later';
-                this.props.setError(error);
-            })
-            .finally(this.props.finishLoading);
-    }
+    onSubmit = () =>
+        assetsService.create(+this.state.amount, this.state.currencyId)
+            .then(success => success && this.props.onClose());
 
     render() {
-        const submitDisabled = !(validateHelper.email('') && false);
+        const submitDisabled = !(validateHelper.bankCardOwner(this.state.owner) && validateHelper.bankCardCvv(this.state.cvv)
+            && validateHelper.bankCardNumber(this.state.number) && validateHelper.bankCardAmount(this.state.amount));
         return (
             <Window
                 open={this.props.open}
@@ -155,7 +142,7 @@ class AssetsWindow extends React.Component {
                             select
                             label='Currency'
                             name='currency'
-                            value={this.state.currency}
+                            value={this.state.currencyId}
                             onChange={this.onChangeField}
                             className='bank-card__field _currency'
                         >

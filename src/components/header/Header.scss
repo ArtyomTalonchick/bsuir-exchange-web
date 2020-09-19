@@ -36,13 +36,9 @@ div.header {
 }
 
 .header__menu {
-  &._assets {
-    ul {
-    }
-  }
-
   ul {
     min-width: 120px;
+
     li {
       display: flex;
       justify-content: space-between;
@@ -57,6 +53,10 @@ div.header {
         &:hover {
           background: var(--color-secondary-light-2);
         }
+      }
+
+      &._selected {
+        background: var(--color-secondary-light-2);
       }
     }
 

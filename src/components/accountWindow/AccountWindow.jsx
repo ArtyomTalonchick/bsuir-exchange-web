@@ -19,20 +19,9 @@ class AccountWindow extends React.Component {
 
     onChangeField = e => this.setState({[e.currentTarget.name]: e.currentTarget.value})
 
-    onSubmit = () => {
-        this.props.startLoading();
+    onSubmit = () =>
         accountsServices.create(this.state.accountName)
-            .then(response => {
-
-                this.props.onClose();
-            })
-            .catch(reason => {
-                const status = reason.response.status;
-                const error = status === 403 ? 'Access denied' : 'Server error, sorry, try again later';
-                this.props.setError(error);
-            })
-            .finally(this.props.finishLoading);
-    }
+            .then(success => success && this.props.onClose());
 
     render() {
         const submitDisabled = !validateHelper.accountName(this.state.accountName);

@@ -3,12 +3,14 @@ import {AppBar, Toolbar, Typography, Button, Menu, MenuItem, Tooltip, IconButton
 
 import userService from '../../services/userService';
 import withUser from '../withUser';
+import withAccounts from '../withAccounts';
 import AuthWindow from '../authWindow/AuthWindow';
 import AccountWindow from '../accountWindow/AccountWindow';
 import AssetsWindow from '../assetsWindow/AssetsWindow';
 
 import './Header.scss';
 import logo from '../../static/logo.png';
+import withAssets from "../withAssets";
 
 class Header extends React.Component {
 
@@ -41,15 +43,8 @@ class Header extends React.Component {
     onCloseAssetsWindow = () => this.setState({openAssetsWindow: false});
 
     render() {
-        const
-            symbolName = 'USDEUR',
-            assets = [
-                {currencyName: 'USD', volume: 1000},
-                {currencyName: 'EUR', volume: 1900},
-                {currencyName: 'BTC', volume: 0.001},
-                {currencyName: 'LTC', volume: 0},
-            ],
-            accounts = ['Cash', 'Crypto', 'Fiat'];
+        const currentAccount = this.props.getCurrentAccount();
+        const symbolName = 'USDEUR';
 
         return (
             <AppBar position='static'>
@@ -85,9 +80,9 @@ class Header extends React.Component {
                             keepMounted
                             className='header__menu'
                         >
-                            {assets.map(asset =>
-                                <MenuItem key={asset.currencyName} className='asset-item'>
-                                    <span className='_mrg-r'>{asset.currencyName}</span>
+                            {this.props.assets.map(asset =>
+                                <MenuItem key={asset.currencyName}>
+                                    <span className='_mrg-r'>{asset.currency_name}</span>
                                     <span>{asset.volume}</span>
                                 </MenuItem>
                             )}
@@ -106,7 +101,16 @@ class Header extends React.Component {
                             keepMounted
                             className='header__menu'
                         >
-                            {accounts.map(account => <MenuItem key={account}>{account}</MenuItem>)}
+                            {this.props.accounts.map(({id, name}) =>
+                                <MenuItem
+                                    key={id}
+                                    value={id}
+                                    onClick={() => this.props.setCurrentAccount(id)}
+                                    className={id === currentAccount.id ? '_selected' : ''}
+                                >
+                                    {name}
+                                </MenuItem>
+                            )}
                             <MenuItem onClick={this.onOpenAccountWindow} className='_active'>Add new</MenuItem>
                         </Menu>
                     </div>
@@ -142,4 +146,4 @@ class Header extends React.Component {
     }
 }
 
-export default withUser(Header);
+export default withUser(withAccounts(withAssets(Header)));

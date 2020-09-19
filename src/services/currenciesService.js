@@ -2,16 +2,11 @@ import {RestRequest} from './requestService';
 import {endpoints} from '../constants/endpoints';
 import {finishLoading, startLoading} from '../components/withLoader';
 import {setError} from '../components/withAlert';
-import {setAccounts} from '../components/withAccounts';
 
-const create = name => {
+const getAll = () => {
     startLoading();
-    return RestRequest.post(endpoints.accounts.create, {}, {name})
-        .then(response => {
-            const accounts = JSON.parse(response.data);
-            setAccounts(accounts);
-            return accounts;
-        })
+    return RestRequest.get(endpoints.currencies, {}, {})
+        .then(response => JSON.parse(response.data))
         .catch(() => {
             setError('Server error, sorry, try again later');
             return null;
@@ -20,5 +15,5 @@ const create = name => {
 }
 
 export default {
-    create
+    getAll
 }
