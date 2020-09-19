@@ -1,6 +1,6 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
-import {setAccounts} from './withAccounts';
+import {setAccounts} from './accountsProvider';
 
 let user = null;
 try {
@@ -18,11 +18,10 @@ export const setUser = _user => {
     user$.next(user);
 };
 
-export default function (WrappedComponent) {
-    return class extends React.Component {
+export default WrappedComponent =>
+    class extends React.Component {
         constructor(props) {
             super(props);
-
             this.state = {user};
         }
 
@@ -45,4 +44,3 @@ export default function (WrappedComponent) {
             );
         }
     };
-}

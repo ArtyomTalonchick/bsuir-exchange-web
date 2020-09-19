@@ -1,8 +1,10 @@
 import React from 'react';
 import Alert from '@material-ui/lab/Alert';
 import {Snackbar, Backdrop, CircularProgress} from '@material-ui/core';
-import withAlert from './components/withAlert';
-import withLoader from './components/withLoader';
+
+import {withProviders} from './helpers/providersHelper';
+import alertsProvider from './providers/alertsProvider';
+import loaderProvider from './providers/loaderProvider';
 import Header from './components/header/Header';
 import OrderBook from './components/orderBook/OrderBook';
 import Chart from './components/chart/Chart';
@@ -43,4 +45,4 @@ class App extends React.Component {
     }
 }
 
-export default withAlert(withLoader(App));
+export default withProviders(App, [alertsProvider, loaderProvider]);

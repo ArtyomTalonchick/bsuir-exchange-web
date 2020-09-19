@@ -2,10 +2,11 @@ import React from 'react';
 import {AppBar, Toolbar, Typography, Button, Menu, MenuItem, Tooltip, IconButton} from '@material-ui/core';
 
 import userService from '../../services/userService';
-import withUser from '../withUser';
-import withAccounts from '../withAccounts';
-import withAssets from '../withAssets';
-import withSymbols from '../withSymbols';
+import {withProviders} from '../../helpers/providersHelper';
+import userProvider from '../../providers/userProvider';
+import accountsProvider from '../../providers/accountsProvider';
+import assetsProvider from '../../providers/assetsProvider';
+import symbolsProvider from '../../providers/symbolsProvider';
 import AuthWindow from '../authWindow/AuthWindow';
 import AccountWindow from '../accountWindow/AccountWindow';
 import AssetsWindow from '../assetsWindow/AssetsWindow';
@@ -81,7 +82,7 @@ class Header extends React.Component {
                     </div>
 
                     <div>
-                        <Button onClick={this.onShowAssets} disabled={!this.props.user}  className='primary'>
+                        <Button onClick={this.onShowAssets} disabled={!this.props.user} className='primary'>
                             Assets
                         </Button>
                         <Menu
@@ -102,7 +103,7 @@ class Header extends React.Component {
                     </div>
 
                     <div>
-                        <Button onClick={this.onShowAccounts} disabled={!this.props.user}  className='primary'>
+                        <Button onClick={this.onShowAccounts} disabled={!this.props.user} className='primary'>
                             Account
                         </Button>
                         <Menu
@@ -157,4 +158,4 @@ class Header extends React.Component {
     }
 }
 
-export default withUser(withAccounts(withAssets(withSymbols(Header))));
+export default withProviders(Header, [userProvider, accountsProvider, assetsProvider, symbolsProvider]);

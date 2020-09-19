@@ -30,8 +30,8 @@ export const setCurrentAccount = id => {
 
 export const getCurrentAccount = () => accounts.length ? accounts[0] : null;
 
-export default function (WrappedComponent) {
-    return class extends React.Component {
+export default WrappedComponent =>
+    class extends React.Component {
         constructor(props) {
             super(props);
 
@@ -59,4 +59,3 @@ export default function (WrappedComponent) {
             );
         }
     };
-}

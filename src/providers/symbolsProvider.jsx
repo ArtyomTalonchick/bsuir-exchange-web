@@ -29,8 +29,8 @@ export const setCurrentSymbol = id => {
 
 export const getCurrentSymbol = () => symbols.length ? symbols[0] : null;
 
-export default function (WrappedComponent) {
-    return class extends React.Component {
+export default WrappedComponent =>
+    class extends React.Component {
         constructor(props) {
             super(props);
 
@@ -58,4 +58,3 @@ export default function (WrappedComponent) {
             );
         }
     };
-}

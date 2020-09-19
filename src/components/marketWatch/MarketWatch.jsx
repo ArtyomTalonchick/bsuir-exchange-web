@@ -1,7 +1,9 @@
 import React from 'react';
 import {Drawer} from '@material-ui/core';
 import MaterialTable from 'material-table'
-import withSymbols from '../withSymbols';
+
+import {withProviders} from '../../helpers/providersHelper';
+import symbolsProvider from '../../providers/symbolsProvider';
 
 import './MarketWatch.scss';
 
@@ -62,4 +64,4 @@ class MarketWatch extends React.Component {
     }
 }
 
-export default withSymbols(MarketWatch);
+export default withProviders(MarketWatch, [symbolsProvider]);

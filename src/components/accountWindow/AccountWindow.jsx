@@ -4,9 +4,10 @@ import {TextField} from '@material-ui/core';
 import accountsServices from '../../services/accountsServices';
 import validateHelper from '../../helpers/validateHelper';
 import Window from '../window/Window';
-import withAlert from '../withAlert';
-import withUser from '../withUser';
-import withLoader from '../withLoader';
+import {withProviders} from '../../helpers/providersHelper';
+import alertsProvider from '../../providers/alertsProvider';
+import userProvider from '../../providers/userProvider';
+import loaderProvider from '../../providers/loaderProvider';
 
 class AccountWindow extends React.Component {
     constructor(props) {
@@ -50,4 +51,4 @@ class AccountWindow extends React.Component {
     }
 }
 
-export default withUser(withAlert(withLoader(AccountWindow)));
+export default withProviders(AccountWindow, [alertsProvider, userProvider, loaderProvider]);

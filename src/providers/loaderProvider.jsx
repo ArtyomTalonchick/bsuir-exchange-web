@@ -13,8 +13,8 @@ const setLoading = _loader => {
 export const startLoading = () => setLoading(true);
 export const finishLoading = () => setLoading(false);
 
-export default function (WrappedComponent) {
-    return class extends React.Component {
+export default WrappedComponent =>
+    class extends React.Component {
         constructor(props) {
             super(props);
 
@@ -40,4 +40,3 @@ export default function (WrappedComponent) {
             );
         }
     };
-}

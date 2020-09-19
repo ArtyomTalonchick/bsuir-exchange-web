@@ -2,9 +2,10 @@ import React from 'react';
 import {Tabs, Tab, TextField} from '@material-ui/core';
 
 import Window from '../window/Window';
-import withAlert from '../withAlert';
-import withUser from '../withUser';
-import withLoader from '../withLoader';
+import {withProviders} from '../../helpers/providersHelper';
+import alertsProvider from '../../providers/alertsProvider';
+import userProvider from '../../providers/userProvider';
+import loaderProvider from '../../providers/loaderProvider';
 import userService from '../../services/userService';
 import validateHelper from '../../helpers/validateHelper';
 
@@ -92,4 +93,4 @@ class AuthWindow extends React.Component {
     }
 }
 
-export default withUser(withAlert(withLoader(AuthWindow)));
+export default withProviders(AuthWindow, [alertsProvider, userProvider, loaderProvider]);

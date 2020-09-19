@@ -1,8 +1,8 @@
 import {RestRequest} from './requestService';
 import {endpoints} from '../constants/endpoints';
-import {finishLoading, startLoading} from '../components/withLoader';
-import {setError} from '../components/withAlert';
-import {setSymbols} from '../components/withSymbols';
+import {finishLoading, startLoading} from '../providers/loaderProvider';
+import {setError} from '../providers/alertsProvider';
+import {setSymbols} from '../providers/symbolsProvider';
 
 const getAll = () => {
     startLoading();

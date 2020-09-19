@@ -1,0 +1,1 @@
+export const withProviders = (component, providers) => providers.reduce((acc, provider) => provider(acc), component);

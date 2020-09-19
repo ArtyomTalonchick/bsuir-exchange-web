@@ -5,9 +5,10 @@ import currenciesService from '../../services/currenciesService';
 import assetsService from '../../services/assetsService';
 import validateHelper from '../../helpers/validateHelper';
 import Window from '../window/Window';
-import withAlert from '../withAlert';
-import withUser from '../withUser';
-import withLoader from '../withLoader';
+import {withProviders} from '../../helpers/providersHelper';
+import alertsProvider from '../../providers/alertsProvider';
+import userProvider from '../../providers/userProvider';
+import loaderProvider from '../../providers/loaderProvider';
 
 import './AssetsWindow.scss';
 import card1 from '../../static/card1.jpg';
@@ -159,4 +160,4 @@ class AssetsWindow extends React.Component {
     }
 }
 
-export default withUser(withAlert(withLoader(AssetsWindow)));
+export default withProviders(AssetsWindow, [alertsProvider, userProvider, loaderProvider]);

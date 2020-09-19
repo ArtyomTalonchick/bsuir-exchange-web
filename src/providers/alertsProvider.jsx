@@ -12,8 +12,8 @@ export const setError = _error => {
 
 export const clearError = () => setError(null);
 
-export default function (WrappedComponent) {
-    return class extends React.Component {
+export default WrappedComponent =>
+    class extends React.Component {
         constructor(props) {
             super(props);
 
@@ -39,4 +39,3 @@ export default function (WrappedComponent) {
             );
         }
     };
-}

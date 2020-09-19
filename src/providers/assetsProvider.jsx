@@ -12,8 +12,8 @@ export const setAssets = _assets => {
 
 export const getAssetByCurrencyId = currencyId => assets.find(asset => asset.currency_id === currencyId);
 
-export default function (WrappedComponent) {
-    return class extends React.Component {
+export default WrappedComponent =>
+    class extends React.Component {
         constructor(props) {
             super(props);
 
@@ -40,4 +40,3 @@ export default function (WrappedComponent) {
             );
         }
     };
-}

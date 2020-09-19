@@ -1,10 +1,10 @@
 import {RestRequest} from './requestService';
 import {endpoints} from '../constants/endpoints';
-import {finishLoading, startLoading} from '../components/withLoader';
-import {setError} from '../components/withAlert';
-import {setUser} from '../components/withUser';
-import {setAccounts} from '../components/withAccounts';
-import {setAssets} from '../components/withAssets';
+import {finishLoading, startLoading} from '../providers/loaderProvider';
+import {setError} from '../providers/alertsProvider';
+import {setUser} from '../providers/userProvider';
+import {setAccounts} from '../providers/accountsProvider';
+import {setAssets} from '../providers/assetsProvider';
 
 const _login = (username, password) => RestRequest.post(endpoints.user.login, {},{username, password});
 

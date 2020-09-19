@@ -1,9 +1,9 @@
 import {RestRequest} from './requestService';
 import {endpoints} from '../constants/endpoints';
-import {finishLoading, startLoading} from '../components/withLoader';
-import {setError} from '../components/withAlert';
-import {getCurrentAccount} from '../components/withAccounts';
-import {setAssets} from '../components/withAssets';
+import {finishLoading, startLoading} from '../providers/loaderProvider';
+import {setError} from '../providers/alertsProvider';
+import {getCurrentAccount} from '../providers/accountsProvider';
+import {setAssets} from '../providers/assetsProvider';
 
 const _get = (account_id) => RestRequest.get(endpoints.assets.get(account_id), {}, {});
 

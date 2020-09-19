@@ -1,8 +1,8 @@
 import {RestRequest} from './requestService';
 import {endpoints} from '../constants/endpoints';
-import {finishLoading, startLoading} from '../components/withLoader';
-import {setError} from '../components/withAlert';
-import {setAccounts} from '../components/withAccounts';
+import {finishLoading, startLoading} from '../providers/loaderProvider';
+import {setError} from '../providers/alertsProvider';
+import {setAccounts} from '../providers/accountsProvider';
 
 const create = name => {
     startLoading();
