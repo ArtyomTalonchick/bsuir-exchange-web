@@ -1,11 +1,31 @@
 import React from 'react';
-import {Paper, Typography} from '@material-ui/core';
+import {
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
+    Divider
+} from '@material-ui/core';
+import {animateScroll} from 'react-scroll';
+
+import {withProviders} from '../../helpers/providersHelper';
+import orderBookProvider from '../../providers/orderBookProvider';
 
 import './OrderBook.scss';
 
+const SELL_TABLE_ID = 'SELL_TABLE_ID';
+const BUY_TABLE_ID = 'BUY_TABLE_ID';
 class OrderBook extends React.Component {
-    constructor(props) {
-        super(props);
+
+    componentDidUpdate(prevProps) {
+        if (JSON.stringify(prevProps.orderBook) !== JSON.stringify(this.props.orderBook)){
+            animateScroll.scrollToBottom({containerId: SELL_TABLE_ID, duration: 0});
+            animateScroll.scrollToTop({containerId: BUY_TABLE_ID, duration: 0});
+        }
     }
 
     render() {
@@ -17,10 +37,42 @@ class OrderBook extends React.Component {
                             Order book
                         </Typography>
                     </div>
+                    <TableContainer className='table-container' id={SELL_TABLE_ID}>
+                        <Table stickyHeader>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align='left'>Prise</TableCell>
+                                    <TableCell align='right'>Amount</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {this.props.orderBook.sell.map(order => (
+                                    <TableRow key={order.id} className='_sell'>
+                                        <TableCell align='left'>{order.price}</TableCell>
+                                        <TableCell align='right'>{order.volume}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <Divider className='order-book__divider'/>
+                    <TableContainer className='table-container' id={BUY_TABLE_ID}>
+                        <Table>
+                            <TableBody>
+                                {this.props.orderBook.buy.map(order => (
+                                    <TableRow key={order.id} className='_buy'>
+                                        <TableCell align='left'>{order.price}</TableCell>
+                                        <TableCell align='right'>{order.volume}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+
                 </>
             </Paper>
         );
     }
 }
 
-export default (OrderBook);
+export default withProviders(OrderBook, [orderBookProvider]);

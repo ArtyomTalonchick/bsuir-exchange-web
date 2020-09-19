@@ -16,7 +16,7 @@ class LastTrades extends React.Component {
                             Last trades
                         </Typography>
                     </div>
-                    <TableContainer className='last-trades__table'>
+                    <TableContainer className='table-container'>
                         <Table stickyHeader>
                             <TableHead>
                                 <TableRow>

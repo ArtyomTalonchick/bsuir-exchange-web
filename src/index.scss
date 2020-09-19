@@ -56,3 +56,32 @@ button.primary {
 ._padding {
   padding: 20px;
 }
+
+.table-container {
+  tr {
+    th, td {
+      padding: 2px;
+
+      &:first-of-type {
+        padding-left: 10px;
+      }
+
+      &:last-of-type {
+        padding-right: 10px;
+      }
+    }
+
+    &._buy {
+      td {
+        color: var(--color-buy);
+      }
+    }
+
+    &._sell {
+      td {
+        color: var(--color-sell);
+      }
+    }
+
+  }
+}

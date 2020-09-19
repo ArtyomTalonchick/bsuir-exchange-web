@@ -1,4 +1,28 @@
 .order-book {
   width: 250px;
   flex-grow: 1;
+  height: 0;
+
+  display: inline-flex;
+  flex-direction: column;
+
+  tr._sell:last-of-type {
+    background: var(--color-sell);
+
+    td {
+      color: white;
+    }
+  }
+
+  tr._buy:first-of-type {
+    background: var(--color-buy);
+
+    td {
+      color: white;
+    }
+  }
+}
+
+hr.order-book__divider {
+  height: 6px;
 }
