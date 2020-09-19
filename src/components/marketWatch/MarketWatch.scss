@@ -52,6 +52,14 @@ div.MuiDrawer-paperAnchorLeft {
     }
   }
 
+  tbody {
+    td:first-child {
+      min-width: 125px;
+      border-right: 1px solid var(--color-surface);
+
+    }
+  }
+
   //.MuiPaper-root {
   //  height: 100%;
   //}

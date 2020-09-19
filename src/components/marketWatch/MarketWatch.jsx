@@ -35,7 +35,9 @@ class MarketWatch extends React.Component {
                         <div className='market-watch__content'>
                             <MaterialTable
                                 columns={[
-                                    {title: 'Name', field: 'name'}
+                                    {title: 'Symbol Name', field: 'name'},
+                                    {title: 'Currencies', render: s => `${s.currency1.full_name} - ${s.currency2.full_name}`},
+
                                 ]}
                                 data={this.props.symbols}
                                 title=''
