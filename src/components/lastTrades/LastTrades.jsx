@@ -27,9 +27,11 @@ class LastTrades extends React.Component {
                             </TableHead>
                             <TableBody>
                                 {this.props.lastTrades.map(order => (
-                                    <TableRow key={order.id} className={order.type === 0 ? '_buy' : '_sell'}>
+                                    <TableRow key={order.id} className={order.side ? '_sell' : '_buy'}>
                                         <TableCell>
-                                            {order.time}
+                                            {order.time.split('T')[1]}
+                                            <br/>
+                                            {order.time.split('T')[0]}
                                         </TableCell>
                                         <TableCell align='center'>{order.price}</TableCell>
                                         <TableCell align='right'>{order.volume}</TableCell>

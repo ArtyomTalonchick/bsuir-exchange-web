@@ -1,19 +1,21 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
 import {onSymbolChangeSubscribe} from './symbolsProvider';
-import lastTradesService from '../services/lastTradesService';
+import '../services/lastTradesService';
 
 let lastTrades = [];
 
 const lastTrades$ = new BehaviorSubject(lastTrades);
 
-let onSymbolChangeSubscription;
-setTimeout(() => onSymbolChangeSubscription = onSymbolChangeSubscribe(lastTradesService.updateLastTrades));
+// let onSymbolChangeSubscription;
+// setTimeout(() => onSymbolChangeSubscription = onSymbolChangeSubscribe(lastTradesService.updateLastTrades));
 
 export const setLastTrades = _lastTrades => {
     lastTrades = _lastTrades;
     lastTrades$.next(lastTrades);
 };
+
+setTimeout(() => onSymbolChangeSubscribe(setLastTrades([])));
 
 export default WrappedComponent =>
     class extends React.Component {
