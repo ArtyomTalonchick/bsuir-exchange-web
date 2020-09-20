@@ -1,5 +1,5 @@
-const apiUrl = 'https://bsuir-exchange-api.herokuapp.com/';
-// const apiUrl = 'http://127.0.0.1:8000/';
+// const apiUrl = 'https://bsuir-exchange-api.herokuapp.com/';
+const apiUrl = 'http://127.0.0.1:8000/';
 
 export const endpoints = {
     user: {
@@ -10,7 +10,7 @@ export const endpoints = {
     currencies: `${apiUrl}currencies`,
 
     assets: {
-        get: account_id => `${apiUrl}assets/${account_id}/`,
+        get: account_id => `${apiUrl}assets/${account_id}`,
         create: `${apiUrl}assets`,
     },
 
@@ -19,5 +19,10 @@ export const endpoints = {
     },
 
     symbols: `${apiUrl}symbols`,
+
+    orders: {
+        book: `${apiUrl}orders/book`,
+        create: `${apiUrl}orders`,
+    }
 
 };

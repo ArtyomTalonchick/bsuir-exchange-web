@@ -21,8 +21,8 @@ class MarketTradeMode extends React.Component {
 
     onSubmit = props => this.props.onSubmit({
         ...props,
-        type: ORDER_TYPES.LIMIT,
-        volume: this.state.amount
+        type: ORDER_TYPES.MARKET,
+        volume: +this.state.amount
     });
 
     render() {
@@ -32,6 +32,7 @@ class MarketTradeMode extends React.Component {
             <div className={`market__mode${this.props.hidden ? ' _hidden' : ''}`}>
                 <TextField
                     type='number'
+                    step='0.01'
                     label='Amount'
                     name='amount'
                     value={this.state.amount}

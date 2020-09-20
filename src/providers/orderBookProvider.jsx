@@ -1,19 +1,21 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
 import {onSymbolChangeSubscribe} from './symbolsProvider';
-import orderBookService from '../services/orderBookService';
+import '../services/orderBookService';
 
 let orderBook = {sell: [], buy: []};
 
 const orderBook$ = new BehaviorSubject(orderBook);
 
-let onSymbolChangeSubscription;
-setTimeout(() => onSymbolChangeSubscription = onSymbolChangeSubscribe(orderBookService.updateOrderBook));
+// let onSymbolChangeSubscription;
+// setTimeout(() => onSymbolChangeSubscription = onSymbolChangeSubscribe(orderBookService.updateOrderBook));
 
 export const setOrderBook = _orderBook => {
     orderBook = _orderBook;
     orderBook$.next(orderBook);
 };
+
+setTimeout(() => onSymbolChangeSubscribe(() => setOrderBook({sell: [], buy: []})));
 
 export default WrappedComponent =>
     class extends React.Component {

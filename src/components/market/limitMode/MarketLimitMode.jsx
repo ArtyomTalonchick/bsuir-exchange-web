@@ -19,8 +19,8 @@ class MarketLimitMode extends React.Component {
     onSubmit = props => this.props.onSubmit({
         ...props,
         type: ORDER_TYPES.LIMIT,
-        volume: this.state.amount,
-        price: this.state.price
+        volume: +this.state.amount,
+        price: +this.state.price
     });
 
     render() {
@@ -28,6 +28,7 @@ class MarketLimitMode extends React.Component {
             <div className={`market__mode${this.props.hidden ? ' _hidden' : ''}`}>
                 <TextField
                     type='number'
+                    step='0.01'
                     label='Amount'
                     name='amount'
                     value={this.state.amount}
@@ -40,6 +41,7 @@ class MarketLimitMode extends React.Component {
                 />
                 <TextField
                     type='number'
+                    step='0.01'
                     label='Price'
                     name='price'
                     value={this.state.price}
