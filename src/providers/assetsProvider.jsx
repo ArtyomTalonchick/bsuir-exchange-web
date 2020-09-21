@@ -17,9 +17,9 @@ export const setAssets = _assets => {
 export const getAssetByCurrencyId = currencyId => assets.find(asset => asset.currency_id === currencyId);
 
 setTimeout(() => {
-    startLoading(MODULES.ASSETS);
+    // startLoading(MODULES.ASSETS);
     onAccountChangeSubscribe(() => {
-        startLoading(MODULES.ASSETS);
+        // startLoading(MODULES.ASSETS);
         setAssets([]);
     });
 });

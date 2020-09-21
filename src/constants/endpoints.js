@@ -23,6 +23,7 @@ export const endpoints = {
     orders: {
         book: `${apiUrl}orders/book`,
         trades: `${apiUrl}orders/trades`,
+        stats: `${apiUrl}orders/stats`,
         create: `${apiUrl}orders`,
     }
 

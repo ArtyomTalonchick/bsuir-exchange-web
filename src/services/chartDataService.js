@@ -1,3 +1,5 @@
+import {RestRequest} from './requestService';
+import {endpoints} from '../constants/endpoints';
 import {MODULES} from '../constants/loadingModules';
 import {getCurrentSymbol} from '../providers/symbolsProvider';
 import {setChartData} from '../providers/chartDataProvider';
@@ -29,18 +31,33 @@ const chartData = [
     {close: 16.710416, date: new Date('2020-09-13T03:26:14')},
 ];
 
+export const defaultDate = {
+    start: new Date(new Date (new Date().setDate(new Date().getDate() - 1)).setSeconds(0)).toISOString().split('.')[0],
+    end: new Date(new Date().setSeconds(0)).toISOString().split('.')[0],
+}
 
-const updateChartData = () => {
+let lastParams = {
+    left_date: defaultDate.start,
+    right_date: defaultDate.end,
+    interval: '1h',
+    side: 1,
+};
+
+const updateChartData = _params => {
     const symbol = getCurrentSymbol();
     if (!symbol) {
-        setError('Symbol not selected');
+        // setError('Symbol not selected');
         return;
     }
 
+    const params = {...lastParams, ..._params, symbol_id: symbol.id};
+    lastParams = {...params};
+
     startLoading(MODULES.CHART);
-    new Promise(resolve => setTimeout(() => resolve({data: JSON.stringify(chartData)}), 700))
+    RestRequest.get(endpoints.orders.stats, params, {})
         .then(response => {
-            setChartData(JSON.parse(response.data));
+            const data = JSON.parse(response.data)?.map(v => ({...v, date: new Date(v.date)}));
+            setChartData(data);
         })
         .catch(() => {
             setError('Server error, sorry, try again later');

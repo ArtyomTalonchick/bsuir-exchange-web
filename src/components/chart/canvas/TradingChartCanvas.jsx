@@ -11,16 +11,23 @@ import {createVerticalLinearGradient, hexToRGBA} from 'react-stockcharts/lib/uti
 import {HoverTooltip} from 'react-stockcharts/lib/tooltip';
 import {EdgeIndicator} from 'react-stockcharts/lib/coordinates';
 
+import {ORDER_SIDES} from '../../../constants/constants';
+
 const canvasGradient = createVerticalLinearGradient([
     {stop: 0, color: hexToRGBA('#f9aa33', 0.1)},
     {stop: 0.7, color: hexToRGBA('#f9aa33', 0.3)},
     {stop: 1, color: hexToRGBA('#f9aa33', 0.5)}
 ]);
 
-class AreaChart extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+class TradingChartCanvas extends React.Component {
+
+    getColor = () => this.props.side === ORDER_SIDES.BUY ? '#1B5E20' : '#BF360C';
+    
+    getCanvasGradient = () => createVerticalLinearGradient([
+        {stop: 0, color: hexToRGBA(this.getColor(), 0.1)},
+        {stop: 0.7, color: hexToRGBA(this.getColor(), 0.3)},
+        {stop: 1, color: hexToRGBA(this.getColor(), 0.4)}
+    ])
 
     getTooltip = ({currentItem, xAccessor}) => ({
         x: timeFormat('%Y-%m-%d - %H-%M-%S')(xAccessor(currentItem)),
@@ -33,22 +40,19 @@ class AreaChart extends React.Component {
     });
 
     render() {
-        // const dataLength = this.props.data.length;
-        // const startDate = this.props.data[dataLength > 10 ? dataLength - 10 : 0].date;
-        // const lastDate = this.props.data[dataLength > 1 ? dataLength - 1 : 0].date;
         return (
             <ChartCanvas
+                // type='svg'
                 ratio={1}
                 width={this.props.width}
-                height={500}
+                height={400}
                 margin={{left: 50, right: 50, top: 10, bottom: 30}}
                 data={this.props.data}
                 xAccessor={d => d.date}
                 xScale={scaleTime()}
-                // xExtents={[startDate, lastDate]}
                 // clamp={true}
             >
-                <Chart yExtents={(d) => d.close}>
+                <Chart yExtents={(d) => d.price}>
                     <HoverTooltip
                         stroke={hexToRGBA('#415757', 1)}
                         fill={hexToRGBA('#415757', 0.5)}
@@ -60,15 +64,15 @@ class AreaChart extends React.Component {
                         itemType='last'
                         orient='right'
                         edgeAt='right'
-                        yAccessor={d => d.close}
+                        yAccessor={d => d.price}
                         fill={hexToRGBA('#415757', 1)}
                     />
                     <XAxis axisAt='bottom' orient='bottom' ticks={5}/>
                     <YAxis axisAt='left' orient='left'/>
                     <AreaSeries
-                        stroke={hexToRGBA('#f9aa33', 1)}
-                        yAccessor={d => d.close}
-                        canvasGradient={canvasGradient}
+                        stroke={hexToRGBA(this.getColor(), 1)}
+                        yAccessor={d => d.price}
+                        canvasGradient={this.getCanvasGradient()}
                     />
                 </Chart>
             </ChartCanvas>
@@ -76,4 +80,4 @@ class AreaChart extends React.Component {
     }
 }
 
-export default fitWidth(AreaChart);
+export default fitWidth(TradingChartCanvas);
