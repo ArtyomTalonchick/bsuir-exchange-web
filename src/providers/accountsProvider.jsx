@@ -1,6 +1,5 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
-import assetsService from "../services/assetsService";
 
 let accounts = [];
 try {
@@ -10,12 +9,11 @@ try {
 
 const accounts$ = new BehaviorSubject(accounts);
 
-setTimeout(() => accounts.length && assetsService.update());
+export const onAccountChangeSubscribe = handler => accounts$.subscribe(handler);
 
 export const setAccounts = _accounts => {
     accounts = _accounts;
     accounts$.next(_accounts);
-    return assetsService.update();
 };
 
 export const setCurrentAccount = id => {

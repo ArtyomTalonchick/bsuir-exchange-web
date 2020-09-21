@@ -22,7 +22,7 @@ class App extends React.Component {
                     <CircularProgress color='inherit'/>
                 </Backdrop>
                 <Snackbar
-                    anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+                    anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}
                     autoHideDuration={3000}
                     open={!!this.props.message}
                     onClose={this.props.clearMessage}>

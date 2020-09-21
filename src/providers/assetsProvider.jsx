@@ -1,5 +1,6 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
+import {onAccountChangeSubscribe} from './accountsProvider';
 
 let assets = [];
 
@@ -11,6 +12,8 @@ export const setAssets = _assets => {
 };
 
 export const getAssetByCurrencyId = currencyId => assets.find(asset => asset.currency_id === currencyId);
+
+setTimeout(() => onAccountChangeSubscribe(setAssets([])));
 
 export default WrappedComponent =>
     class extends React.Component {

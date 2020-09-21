@@ -1,42 +1,48 @@
 import {RestRequest} from './requestService';
 import {endpoints} from '../constants/endpoints';
-import {finishLoading, startLoading} from '../providers/loaderProvider';
+import {finishLoading} from '../providers/loaderProvider';
 import {setError} from '../providers/alertsProvider';
 import {getCurrentAccount} from '../providers/accountsProvider';
 import {setAssets} from '../providers/assetsProvider';
+
+const INTERVAL = 1000;
 
 const _get = (account_id) => RestRequest.get(endpoints.assets.get(account_id), {}, {});
 
 const _create = (account_id, currency_id, volume) =>
     RestRequest.post(endpoints.assets.create, {}, {account_id, currency_id, volume});
 
-const execute = method => {
-    startLoading();
-    return method()
+const updateAssets = () => {
+    const accountId = getCurrentAccount()?.id;
+    if (!accountId) {
+        setTimeout(updateAssets, INTERVAL);
+        return;
+    }
+
+    _get(accountId)
         .then(response => {
             setAssets(JSON.parse(response.data));
-            return true;
         })
         .catch(() => {
             setError('Server error, sorry, try again later');
-            return false;
         })
-        .finally(finishLoading);
+        .finally(() => setTimeout(updateAssets, INTERVAL));
 }
-
-const update = () => {
-    const accountId = getCurrentAccount()?.id;
-    if (accountId) {
-        return execute(() => _get(accountId));
-    } else {
-        return new Promise(((resolve, reject) => reject()));
-    }
-}
+setTimeout(updateAssets, INTERVAL);
 
 const create = (volume, currency_id) => {
     const accountId = getCurrentAccount()?.id;
     if (accountId) {
-        return execute(() => _create(accountId, currency_id, volume));
+        return _create(accountId, currency_id, volume)
+            .then(response => {
+                setAssets(JSON.parse(response.data));
+                return true;
+            })
+            .catch(() => {
+                setError('Server error, sorry, try again later');
+                return false;
+            })
+            .finally(finishLoading);
     } else {
         setError('Select an account and try again');
         return new Promise(((resolve, reject) => reject()));
@@ -45,6 +51,5 @@ const create = (volume, currency_id) => {
 
 
 export default {
-    update,
     create,
 }
