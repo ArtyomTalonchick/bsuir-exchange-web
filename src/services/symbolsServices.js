@@ -1,11 +1,12 @@
 import {RestRequest} from './requestService';
 import {endpoints} from '../constants/endpoints';
+import {MODULES} from '../constants/loadingModules';
 import {finishLoading, startLoading} from '../providers/loaderProvider';
 import {setError} from '../providers/alertsProvider';
 import {setSymbols} from '../providers/symbolsProvider';
 
 const getAll = () => {
-    startLoading();
+    startLoading(MODULES.SYMBOLS);
     return RestRequest.get(endpoints.symbols, {}, {})
         .then(response => {
             const symbols = JSON.parse(response.data);
@@ -16,7 +17,7 @@ const getAll = () => {
             setError('Server error, sorry, try again later');
             return null;
         })
-        .finally(finishLoading);
+        .finally(() => finishLoading(MODULES.SYMBOLS));
 }
 
 export default {

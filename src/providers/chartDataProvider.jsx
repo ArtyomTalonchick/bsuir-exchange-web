@@ -1,19 +1,22 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
-import {onSymbolChangeSubscribe} from './symbolsProvider';
+
+import {getCurrentSymbol, onSymbolChangeSubscribe} from './symbolsProvider';
 import chartDataService from '../services/chartDataService';
 
 let chartData = [];
 
 const chartData$ = new BehaviorSubject(chartData);
 
-let onSymbolChangeSubscription;
-setTimeout(() => onSymbolChangeSubscription = onSymbolChangeSubscribe(chartDataService.updateChartData));
-
 export const setChartData = _chartData => {
     chartData = _chartData;
     chartData$.next(chartData);
 };
+
+setTimeout(() => onSymbolChangeSubscribe(() => {
+    setChartData([]);
+    getCurrentSymbol() && chartDataService.updateChartData();
+}));
 
 export default WrappedComponent =>
     class extends React.Component {

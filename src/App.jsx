@@ -5,6 +5,7 @@ import {Snackbar, Backdrop, CircularProgress} from '@material-ui/core';
 import {withProviders} from './helpers/providersHelper';
 import alertsProvider from './providers/alertsProvider';
 import loaderProvider from './providers/loaderProvider';
+import {showGlobalLoader} from './helpers/loadingHelper';
 import Header from './components/header/Header';
 import OrderBook from './components/orderBook/OrderBook';
 import Chart from './components/chart/Chart';
@@ -15,10 +16,13 @@ import Market from './components/market/Market';
 import './App.scss';
 
 class App extends React.Component {
+
+    showLoader = () => showGlobalLoader(this.props.loadingModules);
+
     render() {
         return (
             <div>
-                <Backdrop open={this.props.loading} className='loader'>
+                <Backdrop open={this.showLoader()} className='loader'>
                     <CircularProgress color='inherit'/>
                 </Backdrop>
                 <Snackbar

@@ -1,8 +1,12 @@
 import React from 'react';
 import {Paper, Typography, TableContainer, Table, TableHead, TableBody, TableRow, TableCell} from '@material-ui/core';
 
+import {MODULES} from '../../constants/loadingModules';
+import {showModuleLoader} from '../../helpers/loadingHelper';
 import {withProviders} from '../../helpers/providersHelper';
 import lastTradesProvider from '../../providers/lastTradesProvider';
+import loaderProvider from '../../providers/loaderProvider';
+import Loader from '../loader/Loader';
 
 import './LastTrades.scss';
 
@@ -16,34 +20,41 @@ class LastTrades extends React.Component {
                             Last trades
                         </Typography>
                     </div>
-                    <TableContainer className='table-container'>
-                        <Table stickyHeader>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Time</TableCell>
-                                    <TableCell align='center'>Price</TableCell>
-                                    <TableCell align='right'>Amount</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {this.props.lastTrades.map(order => (
-                                    <TableRow key={order.id} className={order.side ? '_sell' : '_buy'}>
-                                        <TableCell>
-                                            {order.time.split('T')[1]}
-                                            <br/>
-                                            {order.time.split('T')[0]}
-                                        </TableCell>
-                                        <TableCell align='center'>{order.price}</TableCell>
-                                        <TableCell align='right'>{order.volume}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                    {showModuleLoader(this.props.loadingModules, MODULES.LAST_TRADES)
+                        ?
+                        <Loader/>
+                        :
+                        <>
+                            <TableContainer className='table-container'>
+                                <Table stickyHeader>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Time</TableCell>
+                                            <TableCell align='center'>Price</TableCell>
+                                            <TableCell align='right'>Amount</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {this.props.lastTrades.map(order => (
+                                            <TableRow key={order.id} className={order.side ? '_sell' : '_buy'}>
+                                                <TableCell>
+                                                    {order.time.split('T')[1]}
+                                                    <br/>
+                                                    {order.time.split('T')[0]}
+                                                </TableCell>
+                                                <TableCell align='center'>{order.price}</TableCell>
+                                                <TableCell align='right'>{order.volume}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </>
+                    }
                 </>
             </Paper>
         );
     }
 }
 
-export default withProviders(LastTrades, [lastTradesProvider]);
+export default withProviders(LastTrades, [lastTradesProvider, loaderProvider]);

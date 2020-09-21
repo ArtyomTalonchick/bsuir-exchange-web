@@ -1,6 +1,7 @@
 import {RestRequest} from './requestService';
 import {endpoints} from '../constants/endpoints';
-import {finishLoading} from '../providers/loaderProvider';
+import {MODULES} from '../constants/loadingModules';
+import {finishLoading, startLoading} from '../providers/loaderProvider';
 import {setError} from '../providers/alertsProvider';
 import {getCurrentAccount} from '../providers/accountsProvider';
 import {setAssets} from '../providers/assetsProvider';
@@ -26,13 +27,17 @@ const updateAssets = () => {
         .catch(() => {
             setError('Server error, sorry, try again later');
         })
-        .finally(() => setTimeout(updateAssets, INTERVAL));
+        .finally(() => {
+            finishLoading(MODULES.ASSETS);
+            setTimeout(updateAssets, INTERVAL);
+        });
 }
 setTimeout(updateAssets, INTERVAL);
 
 const create = (volume, currency_id) => {
     const accountId = getCurrentAccount()?.id;
     if (accountId) {
+        startLoading(MODULES.ASSETS);
         return _create(accountId, currency_id, volume)
             .then(response => {
                 setAssets(JSON.parse(response.data));
@@ -42,7 +47,7 @@ const create = (volume, currency_id) => {
                 setError('Server error, sorry, try again later');
                 return false;
             })
-            .finally(finishLoading);
+            .finally(() => finishLoading(MODULES.ASSETS));
     } else {
         setError('Select an account and try again');
         return new Promise(((resolve, reject) => reject()));

@@ -1,5 +1,6 @@
 import {RestRequest} from './requestService';
 import {endpoints} from '../constants/endpoints';
+import {MODULES} from '../constants/loadingModules';
 import {finishLoading, startLoading} from '../providers/loaderProvider';
 import {setError} from '../providers/alertsProvider';
 import {setUser} from '../providers/userProvider';
@@ -11,7 +12,7 @@ const _login = (username, password) => RestRequest.post(endpoints.user.login, {}
 const _registration = (username, password) => RestRequest.post(endpoints.user.registration, {},{username, password});
 
 const auth = (method, username, password) => {
-    startLoading();
+    startLoading(MODULES.USER);
     return method(username, password)
         .then(response => {
             setUser(JSON.parse(response.data));
@@ -23,7 +24,7 @@ const auth = (method, username, password) => {
             setError(error);
             return false;
         })
-        .finally(finishLoading);
+        .finally(() => finishLoading(MODULES.USER));
 }
 
 const registration = (username, password) => auth(_registration, username, password);

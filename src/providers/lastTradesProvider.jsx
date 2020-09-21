@@ -1,6 +1,10 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
+
+import {MODULES} from '../constants/loadingModules';
 import {onSymbolChangeSubscribe} from './symbolsProvider';
+import {startLoading} from './loaderProvider';
+
 import '../services/lastTradesService';
 
 let lastTrades = [];
@@ -15,7 +19,13 @@ export const setLastTrades = _lastTrades => {
     lastTrades$.next(lastTrades);
 };
 
-setTimeout(() => onSymbolChangeSubscribe(setLastTrades([])));
+setTimeout(() => {
+    startLoading(MODULES.LAST_TRADES);
+    onSymbolChangeSubscribe(() => {
+        startLoading(MODULES.LAST_TRADES);
+        setLastTrades([]);
+    });
+});
 
 export default WrappedComponent =>
     class extends React.Component {

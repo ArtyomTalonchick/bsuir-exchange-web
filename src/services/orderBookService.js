@@ -1,8 +1,10 @@
 import {RestRequest} from './requestService';
 import {endpoints} from '../constants/endpoints';
+import {MODULES} from '../constants/loadingModules';
 import {getCurrentSymbol} from '../providers/symbolsProvider';
 import {setOrderBook} from '../providers/orderBookProvider';
 import {setError} from '../providers/alertsProvider';
+import {finishLoading} from '../providers/loaderProvider';
 
 const INTERVAL = 1000;
 
@@ -20,6 +22,9 @@ const updateOrderBook = () => {
         .catch(() => {
             setError('Server error, sorry, try again later');
         })
-        .finally(() => setTimeout(updateOrderBook, INTERVAL));
+        .finally(() => {
+            setTimeout(updateOrderBook, INTERVAL);
+            finishLoading(MODULES.ORDER_BOOK);
+        });
 }
 setTimeout(updateOrderBook, INTERVAL);

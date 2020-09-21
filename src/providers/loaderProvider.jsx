@@ -1,17 +1,17 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
 
-let loader = false;
+let loader = {};
 
 const loader$ = new BehaviorSubject(loader);
 
-const setLoading = _loader => {
-    loader = _loader;
+const setLoading = (moduleName, state) => {
+    loader = {...loader, [moduleName]: state};
     loader$.next(loader);
 };
 
-export const startLoading = () => setLoading(true);
-export const finishLoading = () => setLoading(false);
+export const startLoading = moduleName => setLoading(moduleName, true);
+export const finishLoading = moduleName => setLoading(moduleName, false);
 
 export default WrappedComponent =>
     class extends React.Component {
@@ -33,7 +33,7 @@ export default WrappedComponent =>
             return (
                 <WrappedComponent
                     {...this.props}
-                    loading={this.state.loader}
+                    loadingModules={this.state.loader}
                     startLoading={startLoading}
                     finishLoading={finishLoading}
                 />

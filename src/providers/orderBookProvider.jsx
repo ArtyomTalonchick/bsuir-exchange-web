@@ -1,6 +1,10 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
+
+import {MODULES} from '../constants/loadingModules';
 import {onSymbolChangeSubscribe} from './symbolsProvider';
+import {startLoading} from './loaderProvider';
+
 import '../services/orderBookService';
 
 let orderBook = {sell: [], buy: []};
@@ -15,7 +19,13 @@ export const setOrderBook = _orderBook => {
     orderBook$.next(orderBook);
 };
 
-setTimeout(() => onSymbolChangeSubscribe(() => setOrderBook({sell: [], buy: []})));
+setTimeout(() => {
+    startLoading(MODULES.ORDER_BOOK);
+    onSymbolChangeSubscribe(() => {
+        startLoading(MODULES.ORDER_BOOK);
+        setOrderBook({sell: [], buy: []})
+    })
+});
 
 export default WrappedComponent =>
     class extends React.Component {

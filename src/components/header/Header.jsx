@@ -13,6 +13,8 @@ import AssetsWindow from '../assetsWindow/AssetsWindow';
 
 import './Header.scss';
 import logo from '../../static/logo.png';
+import {showGlobalLoader, showModuleLoader} from "../../helpers/loadingHelper";
+import loaderProvider from "../../providers/loaderProvider";
 
 class Header extends React.Component {
 
@@ -49,6 +51,9 @@ class Header extends React.Component {
         this.onCloseAccounts();
     }
 
+    getAssetCaption = currency => `${currency?.name}: ${
+        showGlobalLoader(this.props.loadingModules) ? '-' : this.props.getAssetByCurrencyId(currency?.id)?.volume || 0}`;
+
     render() {
         const currentAccount = this.props.getCurrentAccount();
         const currentSymbol = this.props.getCurrentSymbol();
@@ -73,10 +78,10 @@ class Header extends React.Component {
                         <Typography variant='subtitle2'>
                             <span className='_mrg-r'>Current Assets: </span>
                             <b className='_mrg-r'>
-                                {currentSymbol?.currency1?.name}: {this.props.getAssetByCurrencyId(currentSymbol?.currency1?.id)?.volume || 0}
+                                {this.getAssetCaption(currentSymbol?.currency1)}
                             </b>
                             <b>
-                                {currentSymbol?.currency2?.name}: {this.props.getAssetByCurrencyId(currentSymbol?.currency2?.id)?.volume || 0}
+                                {this.getAssetCaption(currentSymbol?.currency2)}
                             </b>
                         </Typography>
                     </div>
@@ -158,4 +163,4 @@ class Header extends React.Component {
     }
 }
 
-export default withProviders(Header, [userProvider, accountsProvider, assetsProvider, symbolsProvider]);
+export default withProviders(Header, [userProvider, accountsProvider, assetsProvider, symbolsProvider, loaderProvider]);
