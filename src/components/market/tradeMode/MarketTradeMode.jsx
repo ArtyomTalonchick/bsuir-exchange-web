@@ -45,10 +45,10 @@ class MarketTradeMode extends React.Component {
                 />
                 <div className='_df-aic-jcsa'>
                     <span className='market-price _sell'>
-                        {sellPrice || '-'}
+                        {sellPrice?.toFixed(2) || '-'}
                     </span>
                     <span className='market-price _buy'>
-                        {buyPrice || '-'}
+                        {buyPrice?.toFixed(2) || '-'}
                     </span>
                 </div>
                 <MarketButtons

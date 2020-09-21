@@ -42,8 +42,8 @@ class LastTrades extends React.Component {
                                                     <br/>
                                                     {order.time.split('T')[0]}
                                                 </TableCell>
-                                                <TableCell align='center'>{order.price}</TableCell>
-                                                <TableCell align='right'>{order.volume}</TableCell>
+                                                <TableCell align='center'>{order.price?.toFixed(2)}</TableCell>
+                                                <TableCell align='right'>{order.volume?.toFixed(2)}</TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>

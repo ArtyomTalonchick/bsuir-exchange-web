@@ -56,10 +56,10 @@ class OrderBook extends React.Component {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {this.props.orderBook.sell.map(order => (
+                                        {this.props.orderBook?.sell?.map(order => (
                                             <TableRow key={order.id} className='_sell'>
-                                                <TableCell align='left'>{order.price}</TableCell>
-                                                <TableCell align='right'>{order.volume}</TableCell>
+                                                <TableCell align='left'>{order.price?.toFixed(2)}</TableCell>
+                                                <TableCell align='right'>{order.volume?.toFixed(2)}</TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>
@@ -69,10 +69,10 @@ class OrderBook extends React.Component {
                             <TableContainer className='table-container' id={BUY_TABLE_ID}>
                                 <Table>
                                     <TableBody>
-                                        {this.props.orderBook.buy.map(order => (
+                                        {this.props.orderBook?.buy?.map(order => (
                                             <TableRow key={order.id} className='_buy'>
-                                                <TableCell align='left'>{order.price}</TableCell>
-                                                <TableCell align='right'>{order.volume}</TableCell>
+                                                <TableCell align='left'>{order.price?.toFixed(2)}</TableCell>
+                                                <TableCell align='right'>{order.volume?.toFixed(2)}</TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>

@@ -51,8 +51,9 @@ class Header extends React.Component {
         this.onCloseAccounts();
     }
 
-    getAssetCaption = currency => `${currency?.name}: ${
-        showGlobalLoader(this.props.loadingModules) ? '-' : this.props.getAssetByCurrencyId(currency?.id)?.volume || 0}`;
+    getAssetCaption = currency => `${currency?.name || '-'}: ${showGlobalLoader(this.props.loadingModules)
+        ? '-'
+        : this.props.getAssetByCurrencyId(currency?.id)?.volume?.toFixed(2) || 0}`;
 
     render() {
         const currentAccount = this.props.getCurrentAccount();
