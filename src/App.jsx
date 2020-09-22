@@ -5,6 +5,7 @@ import {Snackbar, Backdrop, CircularProgress} from '@material-ui/core';
 import {withProviders} from './helpers/providersHelper';
 import alertsProvider from './providers/alertsProvider';
 import loaderProvider from './providers/loaderProvider';
+import userProvider from './providers/userProvider';
 import {showGlobalLoader} from './helpers/loadingHelper';
 import Header from './components/header/Header';
 import OrderBook from './components/orderBook/OrderBook';
@@ -12,6 +13,7 @@ import Chart from './components/chart/Chart';
 import LastTrades from './components/lastTrades/LastTrades';
 import MarketWatch from './components/marketWatch/MarketWatch';
 import Market from './components/market/Market';
+import History from './components/history/History';
 
 import './App.scss';
 
@@ -35,18 +37,24 @@ class App extends React.Component {
                     </Alert>
                 </Snackbar>
                 <Header/>
-                <div className='main-container _df-aic-jcsb'>
-                    <MarketWatch/>
-                    <div className='main-pair-inner'>
-                        <OrderBook/>
-                        <Market/>
+                <div  className='app-container'>
+                    <div className='main-container _df-aic-jcsb'>
+                        <MarketWatch/>
+                        <div className='main-pair-inner'>
+                            <OrderBook/>
+                            <Market/>
+                        </div>
+                        <Chart/>
+                        <LastTrades/>
                     </div>
-                    <Chart/>
-                    <LastTrades/>
+                    {this.props.user &&
+                    <div className='app-history-container'>
+                        <History/>
+                    </div>}
                 </div>
             </div>
         );
     }
 }
 
-export default withProviders(App, [alertsProvider, loaderProvider]);
+export default withProviders(App, [alertsProvider, loaderProvider, userProvider]);

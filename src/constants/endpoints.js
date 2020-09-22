@@ -25,6 +25,7 @@ export const endpoints = {
         trades: `${apiUrl}orders/trades`,
         stats: `${apiUrl}orders/stats`,
         create: `${apiUrl}orders`,
+        history: `${apiUrl}orders/history/active`,
     }
 
 };

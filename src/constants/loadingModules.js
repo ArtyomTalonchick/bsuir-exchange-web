@@ -8,6 +8,7 @@ export const MODULES = {
     LAST_TRADES: 'LAST_TRADES',
     CHART: 'CHART',
     MARKET: 'MARKET',
+    HISTORY: 'HISTORY',
 };
 
 export const BLOCKED_MODULES = [

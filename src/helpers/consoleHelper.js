@@ -1,2 +1,2 @@
-// console.error = () => {};
-// console.warn = () => {};
+console.error = () => {};
+console.warn = () => {};
