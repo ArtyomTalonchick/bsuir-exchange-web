@@ -34,7 +34,7 @@ class TradingChartCanvas extends React.Component {
         y: [
             {
                 label: 'Price',
-                value: currentItem.close
+                value: currentItem.price
             }
         ]
     });
