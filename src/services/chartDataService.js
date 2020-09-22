@@ -30,10 +30,12 @@ const chartData = [
     {close: 15.341041, date: new Date('2020-09-13T03:26:13')},
     {close: 16.710416, date: new Date('2020-09-13T03:26:14')},
 ];
+const getLocalISO = date =>
+    new Date(date.setSeconds(0) - (new Date()).getTimezoneOffset() * 60000).toISOString().split('.')[0];
 
 export const defaultDate = {
-    start: new Date(new Date (new Date().setDate(new Date().getDate() - 1)).setSeconds(0)).toISOString().split('.')[0],
-    end: new Date(new Date().setSeconds(0)).toISOString().split('.')[0],
+    start: getLocalISO(new Date (new Date().setDate(new Date().getDate() - 1))),
+    end: getLocalISO(new Date()),
 }
 
 let lastParams = {
