@@ -9,7 +9,9 @@ const user$ = new BehaviorSubject(user);
 
 export const setUser = _user => {
     user = _user;
-    localStorage.setItem('Authorization', user && user.token);
+    user?.token
+        ? localStorage.setItem('Authorization', user.token)
+        : localStorage.removeItem('Authorization');
     user?.accounts && setAccounts(user.accounts);
     user$.next(user);
 };
