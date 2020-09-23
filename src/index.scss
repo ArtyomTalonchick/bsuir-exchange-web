@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   background: var(--color-surface);
+  min-width: 600px;
 }
 
 i {
@@ -20,6 +21,13 @@ i {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+._df-adaptive {
+  display: flex;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
 }
 
 div.block-container {
@@ -82,5 +90,11 @@ button.primary {
       }
     }
 
+  }
+}
+
+._only__full {
+  @media (max-width: 1200px) {
+    display: none;
   }
 }

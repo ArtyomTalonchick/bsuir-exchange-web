@@ -1,20 +1,20 @@
 import React from 'react';
-import {AppBar, Toolbar, Typography, Button, Menu, MenuItem, Tooltip, IconButton} from '@material-ui/core';
+import {AppBar, Button, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography} from '@material-ui/core';
 
 import userService from '../../services/userService';
+import {showGlobalLoader} from '../../helpers/loadingHelper';
 import {withProviders} from '../../helpers/providersHelper';
 import userProvider from '../../providers/userProvider';
 import accountsProvider from '../../providers/accountsProvider';
 import assetsProvider from '../../providers/assetsProvider';
 import symbolsProvider from '../../providers/symbolsProvider';
+import loaderProvider from '../../providers/loaderProvider';
 import AuthWindow from '../authWindow/AuthWindow';
 import AccountWindow from '../accountWindow/AccountWindow';
 import AssetsWindow from '../assetsWindow/AssetsWindow';
 
 import './Header.scss';
 import logo from '../../static/logo.png';
-import {showGlobalLoader, showModuleLoader} from "../../helpers/loadingHelper";
-import loaderProvider from "../../providers/loaderProvider";
 
 class Header extends React.Component {
 
@@ -73,11 +73,11 @@ class Header extends React.Component {
                     </div>
 
                     <div className='_df-aic-jcsa'>
-                        <Typography variant='subtitle2'>
+                        <Typography variant='subtitle2' className='_only__full'>
                             <span className='_mrg-r'>Current Symbol:</span><b>{currentSymbol?.name}</b>
                         </Typography>
-                        <Typography variant='subtitle2'>
-                            <span className='_mrg-r'>Current Assets: </span>
+                        <Typography variant='subtitle2' className='_df-adaptive'>
+                            <span className='_mrg-r _only__full'>Current Assets: </span>
                             <b className='_mrg-r'>
                                 {this.getAssetCaption(currentSymbol?.currency1)}
                             </b>
@@ -87,7 +87,7 @@ class Header extends React.Component {
                         </Typography>
                     </div>
 
-                    <div>
+                    <div className='_df-aic-jcsa _df-adaptive header__controls'>
                         <Button onClick={this.onShowAssets} disabled={!this.props.user} className='primary'>
                             Assets
                         </Button>
@@ -106,9 +106,7 @@ class Header extends React.Component {
                             )}
                             <MenuItem onClick={this.onOpenAssetsWindow} className='_active'>Top up</MenuItem>
                         </Menu>
-                    </div>
 
-                    <div>
                         <Button onClick={this.onShowAccounts} disabled={!this.props.user} className='primary'>
                             Account
                         </Button>

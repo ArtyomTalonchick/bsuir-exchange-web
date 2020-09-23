@@ -7,9 +7,17 @@ div.header {
     display: flex;
     align-items: center;
 
-    &:nth-of-type(2) {
-      width: 50%;
+    @media (min-width: 1200px) {
+      &:nth-of-type(2) {
+        width: 50%;
+      }
     }
+  }
+}
+
+@media (min-width: 1200px) {
+  .header__controls {
+    flex-grow: 1;
   }
 }
 

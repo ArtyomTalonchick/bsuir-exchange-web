@@ -4,10 +4,6 @@ import {Button, IconButton, Modal, Paper, Typography} from '@material-ui/core';
 import './Window.scss';
 
 export default class Window extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <Modal

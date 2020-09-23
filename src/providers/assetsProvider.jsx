@@ -1,9 +1,7 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
 
-import {MODULES} from '../constants/loadingModules';
 import {onAccountChangeSubscribe} from './accountsProvider';
-import {startLoading} from './loaderProvider';
 
 let assets = [];
 
@@ -16,13 +14,7 @@ export const setAssets = _assets => {
 
 export const getAssetByCurrencyId = currencyId => assets.find(asset => asset.currency_id === currencyId);
 
-setTimeout(() => {
-    // startLoading(MODULES.ASSETS);
-    onAccountChangeSubscribe(() => {
-        // startLoading(MODULES.ASSETS);
-        setAssets([]);
-    });
-});
+setTimeout(() => onAccountChangeSubscribe(() => setAssets([])));
 
 export default WrappedComponent =>
     class extends React.Component {

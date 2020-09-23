@@ -13,12 +13,6 @@ import {EdgeIndicator} from 'react-stockcharts/lib/coordinates';
 
 import {ORDER_SIDES} from '../../../constants/constants';
 
-const canvasGradient = createVerticalLinearGradient([
-    {stop: 0, color: hexToRGBA('#f9aa33', 0.1)},
-    {stop: 0.7, color: hexToRGBA('#f9aa33', 0.3)},
-    {stop: 1, color: hexToRGBA('#f9aa33', 0.5)}
-]);
-
 class TradingChartCanvas extends React.Component {
 
     getColor = () => this.props.side === ORDER_SIDES.BUY ? '#1B5E20' : '#BF360C';
