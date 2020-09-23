@@ -6,6 +6,15 @@ div.window {
   width: 50%;
   height: auto;
   outline: none;
+
+  @media (max-width: 1200px) {
+    top: 0;
+    left: 0;
+    transform: none;
+    height: 100%;
+    width: 100%;
+
+  }
 }
 
 .window__header {
