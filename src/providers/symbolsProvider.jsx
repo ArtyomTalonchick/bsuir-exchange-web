@@ -3,11 +3,6 @@ import {BehaviorSubject} from 'rxjs';
 import symbolsServices from '../services/symbolsServices';
 
 let symbols = [];
-try {
-    symbols = JSON.parse(localStorage.getItem('User')).symbols || [];
-} catch {
-}
-
 symbolsServices.getAll();
 
 const symbols$ = new BehaviorSubject(symbols);

@@ -19,9 +19,7 @@ const auth = (method, username, password) => {
             return true;
         })
         .catch(reason => {
-            const status = reason.response.status;
-            const error = status === 403 ? 'Email or password is wrong' : 'Server error, sorry, try again later';
-            setError(error);
+            reason.response.status !== 403 && setError('Server error, sorry, try again later');
             return false;
         })
         .finally(() => finishLoading(MODULES.USER));
@@ -30,6 +28,20 @@ const auth = (method, username, password) => {
 const registration = (username, password) => auth(_registration, username, password);
 
 const login = (username, password) => auth(_login, username, password);
+
+
+const update = () => {
+    if (!localStorage.getItem('Authorization')) return;
+
+    startLoading(MODULES.USER);
+    return RestRequest.get(endpoints.user.info, {},{})
+        .then(response => {
+            setUser(JSON.parse(response.data));
+            return true;
+        })
+        .catch(() => {})
+        .finally(() => finishLoading(MODULES.USER));
+}
 
 const logout = () => {
     setUser(null);
@@ -40,5 +52,6 @@ const logout = () => {
 export default {
     login,
     registration,
-    logout
+    logout,
+    update
 }

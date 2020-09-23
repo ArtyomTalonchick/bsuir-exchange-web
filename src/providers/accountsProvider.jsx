@@ -2,10 +2,6 @@ import React from 'react';
 import {BehaviorSubject} from 'rxjs';
 
 let accounts = [];
-try {
-    accounts = JSON.parse(localStorage.getItem('User')).accounts || [];
-} catch {
-}
 
 const accounts$ = new BehaviorSubject(accounts);
 

@@ -5,6 +5,7 @@ export const endpoints = {
     user: {
         login: `${apiUrl}users/login`,
         registration: `${apiUrl}users/registration`,
+        info: `${apiUrl}users/info`,
     },
 
     currencies: `${apiUrl}currencies`,

@@ -1,22 +1,20 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
 import {setAccounts} from './accountsProvider';
+import userService from '../services/userService';
 
 let user = null;
-try {
-    user = JSON.parse(localStorage.getItem('User'));
-} catch {
-}
 
 const user$ = new BehaviorSubject(user);
 
 export const setUser = _user => {
     user = _user;
-    localStorage.setItem('User', JSON.stringify(user));
     localStorage.setItem('Authorization', user && user.token);
     user?.accounts && setAccounts(user.accounts);
     user$.next(user);
 };
+
+userService.update();
 
 export default WrappedComponent =>
     class extends React.Component {

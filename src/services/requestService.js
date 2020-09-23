@@ -1,4 +1,6 @@
 import Axios from 'axios';
+import {setError} from '../providers/alertsProvider';
+import userService from './userService';
 
 const method = {
     GET: 'get',
@@ -16,7 +18,14 @@ const sendRequest = (method, url, params, data) => {
         headers,
         params,
         data,
-    });
+    })
+        .catch(reason => {
+            if (reason.response.status === 401){
+                setError('Access denied');
+                userService.logout();
+            }
+            return new Promise((resolve, reject) => reject(reason));
+        });
 };
 
 

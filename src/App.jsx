@@ -27,17 +27,19 @@ class App extends React.Component {
                 <Backdrop open={this.showLoader()} className='loader'>
                     <CircularProgress color='inherit'/>
                 </Backdrop>
+                {!!this.props.message &&
                 <Snackbar
                     anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}
                     autoHideDuration={3000}
                     open={!!this.props.message}
                     onClose={this.props.clearMessage}>
-                    <Alert onClose={this.props.clearError} severity={this.props.message?.type}>
+                    <Alert onClose={this.props.clearMessage} severity={this.props.message?.type}>
                         {this.props.message?.text}
                     </Alert>
                 </Snackbar>
+                }
                 <Header/>
-                <div  className='app-container'>
+                <div className='app-container'>
                     <div className='main-container _df-aic-jcsb'>
                         <MarketWatch/>
                         <div className='main-pair-inner'>
