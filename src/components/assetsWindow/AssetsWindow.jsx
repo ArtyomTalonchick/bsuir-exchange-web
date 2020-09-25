@@ -29,7 +29,7 @@ const DEFAULT_STATE = {
 
 const ERROR_MESSAGES = {
     OWNER: '(FIRSTNAME SECONDNAME)',
-    CVV: 'Must contain 3 digits',
+    CVV: '3 digits',
     NUMBER: 'Must contain 16 digits',
     AMOUNT: 'Cannot be more than 9999999999',
 };

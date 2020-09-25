@@ -19,7 +19,7 @@ const auth = (method, username, password) => {
             return true;
         })
         .catch(reason => {
-            reason.response.status !== 403 && setError('Server error, sorry, try again later');
+            reason.response.status !== 401 && setError('Server error, sorry, try again later');
             return false;
         })
         .finally(() => finishLoading(MODULES.USER));

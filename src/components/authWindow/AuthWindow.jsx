@@ -36,7 +36,12 @@ class AuthWindow extends React.Component {
     onSubmit = () => {
         const method = this.state.mode === 0 ? userService.login : userService.registration;
         method(this.state.username, this.state.password)
-            .then(success => success && this.props.onClose());
+            .then(success => success && this.onClose());
+    }
+
+    onClose = () => {
+        this.setState({mode: 0, username: '', password: '', password2: ''});
+        this.props.onClose()
     }
 
     render() {
@@ -45,8 +50,8 @@ class AuthWindow extends React.Component {
         return (
             <Window
                 open={this.props.open}
-                onClose={this.props.onClose}
-                onCancel={this.props.onClose}
+                onClose={this.onClose}
+                onCancel={this.onClose}
                 onSubmit={this.onSubmit}
                 submitDisabled={submitDisabled}
                 title='Authentication'
