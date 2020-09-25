@@ -9,6 +9,10 @@ import alertsProvider from '../../providers/alertsProvider';
 import userProvider from '../../providers/userProvider';
 import loaderProvider from '../../providers/loaderProvider';
 
+const ERROR_MESSAGES = {
+    NAME: 'Must contain between 3 and 12 characters',
+};
+
 class AccountWindow extends React.Component {
     constructor(props) {
         super(props);
@@ -41,6 +45,7 @@ class AccountWindow extends React.Component {
                         label='Name'
                         variant='outlined'
                         name='accountName'
+                        helperText={!validateHelper.accountName(this.state.accountName) && ERROR_MESSAGES.NAME}
                         value={this.state.accountName}
                         onChange={this.onChangeField}
                         fullWidth

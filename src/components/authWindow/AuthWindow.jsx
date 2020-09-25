@@ -11,6 +11,12 @@ import validateHelper from '../../helpers/validateHelper';
 
 import './AuthWindow.scss';
 
+const ERROR_MESSAGES = {
+    EMAIL: '(example@mail.ru)',
+    PASSWORD: 'Password must be at least 8 characters',
+    PASSWORD2: 'Password does not match',
+};
+
 class AuthWindow extends React.Component {
     constructor(props) {
         super(props);
@@ -62,6 +68,7 @@ class AuthWindow extends React.Component {
                             label='Email'
                             variant='outlined'
                             name='username'
+                            helperText={!validateHelper.email(this.state.username) && ERROR_MESSAGES.EMAIL}
                             value={this.state.username}
                             onChange={this.onChangeField}
                         />
@@ -71,17 +78,19 @@ class AuthWindow extends React.Component {
                             variant='outlined'
                             name='password'
                             type='password'
+                            helperText={!validateHelper.password(this.state.password) && ERROR_MESSAGES.PASSWORD}
                             value={this.state.password}
                             onChange={this.onChangeField}
                         />
 
                         {this.state.mode === 1 &&
                         <TextField
-                            error={!validateHelper.password(this.state.password2)}
+                            error={this.state.password !== this.state.password2}
                             label='Confirm password'
                             variant='outlined'
                             name='password2'
                             type='password'
+                            helperText={this.state.password !== this.state.password2 && ERROR_MESSAGES.PASSWORD2}
                             value={this.state.password2}
                             onChange={this.onChangeField}
                         />

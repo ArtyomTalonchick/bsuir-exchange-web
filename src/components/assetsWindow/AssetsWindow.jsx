@@ -27,6 +27,13 @@ const DEFAULT_STATE = {
     currencyId: '',
 }
 
+const ERROR_MESSAGES = {
+    OWNER: '(FIRSTNAME SECONDNAME)',
+    CVV: 'Must contain 3 digits',
+    NUMBER: 'Must contain 16 digits',
+    AMOUNT: 'Cannot be more than 9999999999',
+};
+
 class AssetsWindow extends React.Component {
     constructor(props) {
         super(props);
@@ -68,6 +75,7 @@ class AssetsWindow extends React.Component {
                             label='Owner'
                             variant='outlined'
                             name='owner'
+                            helperText={!validateHelper.bankCardOwner(this.state.owner) && ERROR_MESSAGES.OWNER}
                             value={this.state.owner}
                             onChange={this.onChangeField}
                             className='bank-card__field _owner'
@@ -78,6 +86,7 @@ class AssetsWindow extends React.Component {
                             label='CVV'
                             variant='outlined'
                             name='cvv'
+                            helperText={!validateHelper.bankCardCvv(this.state.cvv) && ERROR_MESSAGES.CVV}
                             value={this.state.cvv}
                             onChange={this.onChangeField}
                             className='bank-card__field _cvv'
@@ -90,6 +99,7 @@ class AssetsWindow extends React.Component {
                         label='Card number'
                         variant='outlined'
                         name='number'
+                        helperText={!validateHelper.bankCardNumber(this.state.number) && ERROR_MESSAGES.NUMBER}
                         value={this.state.number}
                         onChange={this.onChangeField}
                         className='bank-card__field _number'
@@ -135,6 +145,7 @@ class AssetsWindow extends React.Component {
                             label='Amount'
                             variant='outlined'
                             name='amount'
+                            helperText={!validateHelper.bankCardAmount(this.state.amount) && ERROR_MESSAGES.AMOUNT}
                             value={this.state.amount}
                             onChange={this.onChangeField}
                             fullWidth

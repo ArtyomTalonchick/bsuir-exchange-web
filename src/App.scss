@@ -7,11 +7,9 @@ div.loader {
 }
 
 .main-container {
-  flex-wrap: wrap;
-
-  //@media (max-width: 1200px) {
-  //  height: calc(200vh - 106px);
-  //}
+  @media (max-width: 1200px) {
+    flex-wrap: wrap;
+  }
 }
 
 .main-pair-inner {
