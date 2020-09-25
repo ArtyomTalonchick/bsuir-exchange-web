@@ -13,7 +13,7 @@ import './AuthWindow.scss';
 
 const ERROR_MESSAGES = {
     EMAIL: '(example@mail.ru)',
-    PASSWORD: 'Password must be at least 8 characters',
+    PASSWORD: 'Must contain between 8 and 15 characters',
     PASSWORD2: 'Password does not match',
 };
 
