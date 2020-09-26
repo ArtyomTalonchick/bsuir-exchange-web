@@ -13,6 +13,7 @@ const updateHistory = () => {
     const accountId = getCurrentAccount()?.id;
     if (!symbol || !accountId) {
         setTimeout(updateHistory, INTERVAL);
+        finishLoading(MODULES.HISTORY);
         return;
     }
 
@@ -47,7 +48,7 @@ const removeLimitOrder = id => {
             // setError('Server error, sorry, try again later');
         })
         .finally(() => {
-            finishLoading(MODULES.HISTORY);
+            // finishLoading(MODULES.HISTORY);
         });
 }
 
