@@ -18,14 +18,14 @@ const updateHistory = () => {
 
     RestRequest.get(endpoints.orders.history, {symbol_id: symbol.id, account_id: accountId}, {})
         .then(response => {
-            setHistory(JSON.parse(response.data));
+            symbol === getCurrentSymbol() && setHistory(JSON.parse(response.data));
         })
         .catch(() => {
             // setError('Server error, sorry, try again later');
         })
         .finally(() => {
             setTimeout(updateHistory, INTERVAL);
-            finishLoading(MODULES.HISTORY);
+            symbol === getCurrentSymbol() && finishLoading(MODULES.HISTORY);
         });
 }
 setTimeout(updateHistory, INTERVAL);

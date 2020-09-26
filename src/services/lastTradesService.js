@@ -17,14 +17,14 @@ const updateLastTrades = () => {
 
     RestRequest.get(endpoints.orders.trades, {symbol_id: symbol.id}, {})
         .then(response => {
-            setLastTrades(JSON.parse(response.data));
+            symbol === getCurrentSymbol() && setLastTrades(JSON.parse(response.data));
         })
         .catch(() => {
             setError('Server error, sorry, try again later');
         })
         .finally(() => {
             setTimeout(updateLastTrades, INTERVAL);
-            finishLoading(MODULES.LAST_TRADES);
+            symbol === getCurrentSymbol() && finishLoading(MODULES.LAST_TRADES);
         });
 }
 setTimeout(updateLastTrades, INTERVAL);

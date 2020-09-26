@@ -17,14 +17,14 @@ const updateOrderBook = () => {
 
     RestRequest.get(endpoints.orders.book, {symbol_id: symbol.id}, {})
         .then(response => {
-            setOrderBook(JSON.parse(response.data));
+            symbol === getCurrentSymbol() && setOrderBook(JSON.parse(response.data));
         })
         .catch(() => {
             setError('Server error, sorry, try again later');
         })
         .finally(() => {
             setTimeout(updateOrderBook, INTERVAL);
-            finishLoading(MODULES.ORDER_BOOK);
+            symbol === getCurrentSymbol() && finishLoading(MODULES.ORDER_BOOK);
         });
 }
 setTimeout(updateOrderBook, INTERVAL);
